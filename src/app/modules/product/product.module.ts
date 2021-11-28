@@ -4,15 +4,21 @@ import { AddProductComponent } from './add-product/add-product.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {ListProductComponent} from "./list-product/list-product.component";
+import {ProductComponent} from "./product/product.component";
 
 
 
 @NgModule({
   declarations: [
-    AddProductComponent
+    AddProductComponent,
+    ListProductComponent,
+    ProductComponent
   ],
   exports: [
-    AddProductComponent
+    AddProductComponent,
+    ListProductComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,

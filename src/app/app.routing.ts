@@ -4,7 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {ProduitComponent} from "./produit/produit.component";
+import {ProductComponent} from "./modules/product/product/product.component";
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   }/*,
   {
     path: 'product',
-    component: ProduitComponent
+    component: ProductComponent
   }*/
 ];
 
