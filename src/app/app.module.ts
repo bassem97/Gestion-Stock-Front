@@ -10,22 +10,32 @@ import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.componen
 import {AppRoutingModule} from "./app.routing";
 import {SharedModule} from "./shared/shared.module";
 import {ModulesModule} from "./modules/modules.module";
+import { ProduitComponent } from './produit/produit.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import { ListProductComponent } from './list-product/list-product.component';
+import {ProductModule} from "./modules/product/product.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ProduitComponent,
+    ListProductComponent,
   ],
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
-    SharedModule,
-    ModulesModule
-  ],
+    imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule,
+        AppRoutingModule,
+        SharedModule,
+        ModulesModule,
+        MatCardModule,
+        MatButtonModule,
+        ProductModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

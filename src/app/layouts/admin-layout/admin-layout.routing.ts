@@ -4,6 +4,8 @@ import { DashboardComponent } from '../../modules/dashboard/dashboard.component'
 import { UserProfileComponent } from '../../modules/user-profile/user-profile.component';
 import { TableListComponent } from '../../modules/table-list/table-list.component';
 import { UpgradeComponent } from '../../modules/upgrade/upgrade.component';
+import {ProduitComponent} from "../../produit/produit.component";
+import {ListProductComponent} from "../../list-product/list-product.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -52,4 +54,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'product',        component: ListProductComponent },
 ];
