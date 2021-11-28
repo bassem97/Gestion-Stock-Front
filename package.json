@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "12.1.2",
-    "@angular/cli": "12.1.2",
+    "@angular/cli": "^12.1.2",
     "@angular/compiler-cli": "12.1.2",
     "@angular/language-service": "12.1.2",
     "@types/bootstrap": "4.5.0",
@@ -75,5 +75,17 @@
     "ts-node": "10.1.0",
     "tslint": "6.1.3",
     "typescript": "4.3.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bassem97/Gestion-Stock-Front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/bassem97/Gestion-Stock-Front/issues"
+  },
+  "homepage": "https://github.com/bassem97/Gestion-Stock-Front#readme"
 }
