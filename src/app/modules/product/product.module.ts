@@ -6,6 +6,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ListProductComponent} from "./list-product/list-product.component";
 import {ProductComponent} from "./product/product.component";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -24,7 +25,8 @@ import {ProductComponent} from "./product/product.component";
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class ProductModule { }
