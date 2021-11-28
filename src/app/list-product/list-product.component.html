@@ -1,0 +1,17 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn btn-warning" (click)="showForm()">Add new Product</button>
+    </div>
+    <app-add-product
+                      *ngIf="showFormTemplate" >
+
+    </app-add-product>
+
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of products">
+        <app-produit [product]="product"></app-produit>
+      </div>
+    </div>
+  </div>
+</div>
