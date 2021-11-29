@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
 
   openDeleteEmpDialog(product: Produit) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '400px',
+      width: '30%',
       data: [product, 'produit']
     });
     dialogRef.afterClosed().subscribe(result => {

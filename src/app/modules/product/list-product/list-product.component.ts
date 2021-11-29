@@ -3,6 +3,8 @@ import {Produit} from "../../../core/models/produit";
 import {ProduitService} from "../../../core/services/produit/produit.service";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {MatDialog} from "@angular/material/dialog";
+import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socket-api.service";
+import {WebSocketMessage} from "../../../core/models/WebSocketMessage";
 
 @Component({
   selector: 'app-list-product',
@@ -14,25 +16,32 @@ export class ListProductComponent implements OnInit {
   products: Produit[];
   showFormTemplate: boolean;
   constructor(private produitService: ProduitService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private webSocketAPI: WebSocketAPIService
               ) { }
 
 
 
   ngOnInit(): void {
+    this.webSocketAPI._connect();
+    this.webSocketAPI.remoteMonitoringComp.subscribe(res => {
+      this.refreshListAfterDelete(JSON.parse(res.body).senderId);
+    });
     this.showFormTemplate = false;
     this.produitService.findAll().subscribe(value => {
       this.products = value;
-      console.log(value);
     })
 
   }
 
+
   showForm(){
+    // @ts-ignore
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '60%',
-      height: '76%',
-      data: [null, 'produit']
+      height: '64%',
+      data: [null, 'produit'],
+
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
