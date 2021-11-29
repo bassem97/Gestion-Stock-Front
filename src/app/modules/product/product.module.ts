@@ -9,6 +9,8 @@ import {ProductComponent} from "./product/product.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -30,7 +32,9 @@ import {MatIconModule} from "@angular/material/icon";
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class ProductModule { }

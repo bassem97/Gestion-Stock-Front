@@ -1,84 +1,108 @@
 <div class="main-content ">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-10">
-        <div class="card">
+      <div class="col-md-12">
+        <div class="card" style="height: 100%">
           <div class="card-header card-header-danger">
-            <h4 class="card-title">Edit Profile</h4>
-            <p class="card-category">Complete your profile</p>
+            <h4 class="card-title">Product</h4>
+            <p class="card-category">Complete Product Information</p>
           </div>
           <div class="card-body">
-            <form>
+            <form [formGroup]="productForm">
               <div class="row">
-                <div class="col-md-5">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Company (disabled)" disabled>
-                  </mat-form-field>
-                </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Username">
+                    <input [(ngModel)]="product.code"
+                           matInput
+                           formControlName="code"
+                           placeholder="Code"
+                           required>
+                    <mat-icon matSuffix>badge</mat-icon>
+                    <mat-error *ngIf="!code.valid && code.touched">
+                      {{ getErrorCode() }}
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email address" type="email">
+                    <input [(ngModel)]="product.libelle"
+                           matInput
+                           formControlName="libelle"
+                           placeholder="Libelle"
+                           required>
+                    <mat-icon matSuffix>description</mat-icon>
+                    <mat-error *ngIf="!libelle.valid && libelle.touched">
+                      {{ getErrorLibelle() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input type="number" [(ngModel)]="product.prixUnitaire"
+                           matInput
+                           formControlName="prixUnitaire"
+                           placeholder="PrixUnitaire"
+                           required>
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                    <mat-error *ngIf="!prixUnitaire.valid && prixUnitaire.touched">
+                      {{ getErrorPrixUnitaire() }}
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Fist Name" type="text">
+                      <mat-label>Rayon</mat-label>
+                      <mat-select required>
+                        <mat-option *ngFor="let rayon of rayons" [value]="rayon">
+                          {{rayon.code}} - {{rayon.libelle}}
+                        </mat-option>
+                      </mat-select>
+                    <mat-error *ngIf="!rayon.valid && rayon.touched">
+                      {{ getErrorRayon() }}
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Last Name" type="text">
+                    <mat-label>Stock</mat-label>
+                    <mat-select required>
+                      <mat-option *ngFor="let stock of stocks" [value]="stock">
+                        {{stock.libelleStock}} - {{stock.qteMin}} - {{stock.qte}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!stock.valid && stock.touched">
+                      {{ getErrorStock() }}
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Adress" type="text">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select required value="ELECTROMENAGER">
+                      <mat-option value="ELECTROMENAGER">ELECTROMENAGER</mat-option>
+                      <mat-option value="ALIMENTAIRE">ALIMENTAIRE</mat-option>
+                      <mat-option value="QUINCAILLERIE">QUINCAILLERIE</mat-option>
+                    </mat-select>
                   </mat-form-field>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="City" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Country" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Postal Code" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>About Me</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                  </mat-form-field>
-                  <!-- <div class="form-group">
 
-                      <div class="form-group">
-                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                          <textarea class="form-control" rows="5"></textarea>
-                      </div>
-                  </div> -->
-                </div>
-              </div>
-              <button mat-raised-button *ngIf="data[0]!=null" type="submit" class="btn btn-danger pull-right">Update Product</button>
-              <button mat-raised-button *ngIf="data[0]==null" type="submit" class="btn btn-danger pull-right">Add Product</button>
+              <button *ngIf="data[0]!=null; else add" mat-raised-button type="submit" class="btn btn-danger pull-right"
+                      color="primary"
+                      [disabled]="productForm.invalid">Update Product
+              </button>
+
+              <ng-template #add>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                      color="primary"
+                      [disabled]="productForm.invalid">
+                        Add Product
+              </button>
+              </ng-template>
               <div class="clearfix"></div>
             </form>
           </div>

@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let product of products">
-        <app-produit [product]="product" (deleteEvent)="delete(product)"></app-produit>
+        <app-produit [product]="product" (deleteEvent)="delete(product.idProduit)"></app-produit>
       </div>
     </div>
   </div>

@@ -21,15 +21,11 @@ export class ListProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.showFormTemplate = false;
-    this.refreshList();
-
-  }
-
-  refreshList(){
     this.produitService.findAll().subscribe(value => {
       this.products = value;
       console.log(value);
     })
+
   }
 
   showForm(){
@@ -45,9 +41,13 @@ export class ListProductComponent implements OnInit {
     });
   }
 
-  delete(product: Produit) {
-    this.produitService.delete(product.idProduit).subscribe(result => {
-      this.refreshList()
+  delete(id: number) {
+    this.produitService.delete(id).subscribe(result => {
+      this.refreshListAfterDelete(id);
     })
+  }
+
+  refreshListAfterDelete(id: number) {
+    this.products = this.products.filter(value => value.idProduit != id);
   }
 }
