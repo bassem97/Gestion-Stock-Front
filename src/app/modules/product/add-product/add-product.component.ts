@@ -1,9 +1,12 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Produit} from "../../../core/models/produit";
 import {Stock} from "../../../core/models/stock";
 import {Rayon} from "../../../core/models/rayon";
+import {RayonService} from "../../../core/services/rayon/rayon.service";
+import {StockService} from "../../../core/services/stock/stock.service";
+import {ProduitService} from "../../../core/services/produit/produit.service";
 
 @Component({
   selector: 'app-add-product',
@@ -19,17 +22,39 @@ export class AddProductComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Array<any>,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private productService: ProduitService,
+              private rayonService: RayonService,
+              private stockService: StockService) { }
 
   ngOnInit(): void {
-    this.product = new Produit();
+    this.product = this.data[0] || new Produit();
+    this.stockService.findAll().subscribe(value => {
+      this.stocks = value;
+      if (this.data[0]) {
+        const toSelect = this.stocks.find(stock => stock.idStock == this.product.stock.idStock);
+        this.productForm.get('stock')?.setValue(toSelect);
+      }
+    });
+    this.rayonService.findAll().subscribe(value => {
+      this.rayons = value;
+      if (this.data[0]) {
+        const toSelect = this.rayons.find(rayon => rayon.idRayon == this.product.rayon.idRayon);
+        this.productForm.get('rayon')?.setValue(toSelect);
+      }
+    });
     this.productForm = this.formBuilder.group({
       code: [this.product.code, [Validators.required]],
       libelle: [this.product.libelle, [Validators.required, Validators.minLength(3)]],
       prixUnitaire: [this.product.prixUnitaire, [Validators.required]],
       rayon: [this.product.rayon, [Validators.required]],
       stock: [this.product.stock, [Validators.required]],
+      categorie: [this.product.detailProduit.categorieProduit, [Validators.required]],
     });
+
+    if (this.data[0]) {
+      this.productForm.get('categorie')?.setValue(this.product.detailProduit.categorieProduit);
+    }
   }
 
   // Get form controls Errors
@@ -62,5 +87,27 @@ export class AddProductComponent implements OnInit {
   get prixUnitaire() {return this.productForm.get('prixUnitaire') as FormControl;}
   get rayon() {return this.productForm.get('rayon') as FormControl;}
   get stock() {return this.productForm.get('stock') as FormControl;}
+  get categorie() {return this.productForm.get('categorie') as FormControl;}
 
+  saveProduct() {
+    this.product.stock = this.stock.value;
+    this.product.detailProduit.categorieProduit = this.categorie.value;
+    this.product.rayon = this.rayon.value;
+    this.productService.add(this.product).subscribe(value => {
+      // @ts-ignore
+      this.product = value;
+      this.dialogRef.close(this.product);
+    });
+  }
+
+  updateProduct() {
+    this.product.stock = this.stock.value;
+    this.product.detailProduit.categorieProduit = this.categorie.value;
+    this.product.rayon = this.rayon.value;
+    this.productService.update(this.product).subscribe(value => {
+      // @ts-ignore
+      this.product = value;
+      this.dialogRef.close(this.product);
+    });
+  }
 }

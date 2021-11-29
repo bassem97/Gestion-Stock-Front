@@ -36,7 +36,11 @@ export class ListProductComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.produitService.add(product)
+        let aux = this.products.find(value => value.idProduit == result.idProduit);
+        if (aux)
+          this.products[this.products.indexOf(aux)] = aux;
+        else
+          this.products.push(result);
       }
     });
   }
@@ -44,7 +48,7 @@ export class ListProductComponent implements OnInit {
   delete(id: number) {
     this.produitService.delete(id).subscribe(result => {
       this.refreshListAfterDelete(id);
-    })
+    });
   }
 
   refreshListAfterDelete(id: number) {

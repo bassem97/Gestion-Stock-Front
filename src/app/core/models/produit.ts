@@ -14,5 +14,7 @@ export class Produit {
 
   constructor() {
     this.detailProduit = new DetailProduit();
+    this.stock = new Stock();
+    this.rayon = new Rayon();
   }
 }
