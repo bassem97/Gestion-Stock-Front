@@ -1,0 +1,22 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn btn-warning" (click)="showForm()">Add new Stock</button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4" *ngFor="let stock of stocks">
+        <div class="card card-chart">
+          <div class="card-header card-header-success">
+            <div class="ct-chart" id="dailySalesChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{stock.idStock}}</h4>
+            <p class="card-category">
+              {{stock.libelleStock}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
