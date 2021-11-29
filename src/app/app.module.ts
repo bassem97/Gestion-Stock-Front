@@ -10,17 +10,11 @@ import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.componen
 import {AppRoutingModule} from "./app.routing";
 import {SharedModule} from "./shared/shared.module";
 import {ModulesModule} from "./modules/modules.module";
-import { AddEditProviderComponentComponent } from './Fournisseur/add-edit-provider-component/add-edit-provider-component.component';
-import { ShowOneProviderComponentComponent } from './Fournisseur/show-one-provider-component/show-one-provider-component.component';
-import { ListProviderComponentComponent } from './Fournisseur/list-provider-component/list-provider-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AddEditProviderComponentComponent,
-    ShowOneProviderComponentComponent,
-    ListProviderComponentComponent,
   ],
   imports: [
     BrowserAnimationsModule,
