@@ -14,11 +14,13 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {ProductModule} from "./modules/product/product.module";
 import {MatIconModule} from "@angular/material/icon";
+import { ListStockComponent } from './modules/stock/list-stock/list-stock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ListStockComponent,
   ],
     imports: [
         BrowserAnimationsModule,
