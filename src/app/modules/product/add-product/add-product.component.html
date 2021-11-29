@@ -54,7 +54,7 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                       <mat-label>Rayon</mat-label>
-                      <mat-select required>
+                      <mat-select formControlName="rayon">
                         <mat-option *ngFor="let rayon of rayons" [value]="rayon">
                           {{rayon.code}} - {{rayon.libelle}}
                         </mat-option>
@@ -67,9 +67,9 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Stock</mat-label>
-                    <mat-select required>
+                    <mat-select required formControlName="stock">
                       <mat-option *ngFor="let stock of stocks" [value]="stock">
-                        {{stock.libelleStock}} - {{stock.qteMin}} - {{stock.qte}}
+                        {{stock.libelleStock}}: Qte Min: {{stock.qteMin}} - Qte: {{stock.qte}}
                       </mat-option>
                     </mat-select>
                     <mat-error *ngIf="!stock.valid && stock.touched">
@@ -79,27 +79,41 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Categorie</mat-label>
-                    <mat-select required value="ELECTROMENAGER">
+                    <mat-select required value="ELECTROMENAGER" formControlName="categorie">
                       <mat-option value="ELECTROMENAGER">ELECTROMENAGER</mat-option>
                       <mat-option value="ALIMENTAIRE">ALIMENTAIRE</mat-option>
                       <mat-option value="QUINCAILLERIE">QUINCAILLERIE</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fournisseur</mat-label>
+                    <mat-select required multiple formControlName="fournisseurs">
+                      <mat-option *ngFor="let fournisseur of fournisseursArray" [value]="fournisseur">
+                        {{fournisseur.code}} - {{fournisseur.libelle}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!fournisseurs.valid && fournisseurs.touched">
+                      {{ getErrorFournisseur() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
               </div>
 
               <button *ngIf="data[0]!=null; else add" mat-raised-button type="submit" class="btn btn-danger pull-right"
                       color="primary"
-                      [disabled]="productForm.invalid">Update Product
+                      [disabled]="productForm.invalid" (click)="updateProduct()">Update Product
               </button>
 
               <ng-template #add>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right"
                       color="primary"
-                      [disabled]="productForm.invalid">
+                      [disabled]="productForm.invalid" (click)="saveProduct()" [mat-dialog-close]="true">
                         Add Product
               </button>
               </ng-template>

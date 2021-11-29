@@ -1,0 +1,44 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Fournisseurs</h4>
+            <p>
+              <input   #term (keyup)="search_fournisseur(term.value)" type="text" class="form-control search-text-indent  searchbar-positioning" >
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                <th style="display: flex; flex-wrap: nowrap">
+                  <tr>Id</tr>
+                  <tr style="margin-left: 20.4px">Code</tr>
+                  <tr style="margin-left: 42px">Libelle</tr>
+                  <tr style="margin-left: 85px">Supprimer</tr>
+                  <tr style="margin-left: 62px">Modifier</tr>
+                </th>
+                </thead>
+                <tbody>
+                <tr>
+                <app-show-onefournisseur-component *ngFor="let object of listmanipulation" [fournisseur]="object"
+                                                   (supprimer_fournisseur)="supprimer_fournisseur($event)" (modifier_fournisseur_before)="modifier_fournisseur_before($event)" style="display: table" >
+                </app-show-onefournisseur-component>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="ajouter" class="btn btn-info" (click)="show()">Ajouter</button>
+    <div *ngIf="isshow">
+      <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [fournisseur]="input" [name]="'Modifier'" (ajouter_modifier_fournisseur)="modifier_fournisseur_after($event)" ></app-add-edit-fournisseurcomponent>
+      <!--    <app-edit-invoice-component></app-edit-invoice-component>-->
+    </div>
+      <div *ngIf="showinput">
+        <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [name]="'Ajouter'" (ajouter_modifier_fournisseur)="ajouter_fournisseur($event)"></app-add-edit-fournisseurcomponent>
+      </div>
+  </div>
+</div>

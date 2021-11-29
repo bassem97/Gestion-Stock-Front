@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Produit} from "../../../core/models/produit";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
-import {ProduitService} from "../../../core/services/produit/produit.service";
 import {AddProductComponent} from "../add-product/add-product.component";
 
 @Component({
@@ -12,7 +11,7 @@ import {AddProductComponent} from "../add-product/add-product.component";
 })
 export class ProductComponent implements OnInit {
   @Input() product: Produit;
-  @Output() deleteEvent = new EventEmitter<Produit>()
+  @Output() deleteEvent = new EventEmitter<Produit>();
 
   img: string = "src/assets/img/angular.png";
 
@@ -35,15 +34,10 @@ export class ProductComponent implements OnInit {
   }
 
   openEditEmpDialog(product: Produit) {
-    const dialogRef = this.dialog.open(AddProductComponent, {
+    this.dialog.open(AddProductComponent, {
       width: '60%',
       height: '76%',
       data: [product, 'produit']
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteEvent.emit(this.product)
-      }
     });
   }
 }

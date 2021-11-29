@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/table-list', title: 'Table List',  icon: 'content_paste', class: '' },
     { path: '/upgrade', title: 'Upgrade to PRO',  icon: 'unarchive', class: 'active-pro' },
     { path: '/product', title: 'Products',  icon: 'unarchive', class: '' },
+    { path: '/fournisseur', title: 'Fournisseurs',  icon: 'person', class: '' },
 ];
 
 @Component({
@@ -29,9 +30,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+      return $(window).width() <= 991;
+
   };
 }

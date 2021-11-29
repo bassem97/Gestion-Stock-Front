@@ -15,7 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    DeleteDialogComponent,
+    DeleteDialogComponent
   ],
   exports: [
     SidebarComponent,
