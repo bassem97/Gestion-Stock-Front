@@ -22,6 +22,7 @@
       "es2020",
       "dom"
     ],
+    "skipLibCheck": true,
     "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {

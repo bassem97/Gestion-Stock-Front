@@ -1,26 +1,73 @@
-<!--
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{product.code}}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{product.image}}" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>{{product.libelle}}</p>
-    <p>{{product.prixUnitaire}} DT</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Add to cart</button>
-  </mat-card-actions>
-</mat-card>
--->
+<!--<mat-card class="example-card">-->
+<!--  <mat-card-header>-->
+<!--    <mat-card-title>{{product.code}}</mat-card-title>-->
+<!--  </mat-card-header>-->
+<!--  <img mat-card-image src="{{product.image}}" alt="Photo of a Shiba Inu">-->
+<!--  <mat-card-content>-->
+<!--    <p>{{product.libelle}}</p>-->
+<!--    <p>{{product.prixUnitaire}} DT</p>-->
+<!--  </mat-card-content>-->
+<!--  <mat-card-actions>-->
+<!--    <button mat-button>Add to cart</button>-->
+<!--  </mat-card-actions>-->
+<!--</mat-card>-->
+
 
     <div class="card card-chart">
       <div class="card-header card-header-success">
-        <div class="ct-chart" id="dailySalesChart"></div>
+<!--        <div class="ct-chart" id="dailySalesChart"></div>-->
+        <img class="img-fluid"  src="./assets/img/cover.jpeg" alt="">
       </div>
       <div class="card-body">
-        <h4 class="card-title">{{product.code}}</h4>
-        <p class="card-category">
-          {{product.libelle}}
+        <div class="row">
+          <div class="col-6" >
+            <h4 class="card-title">{{product.code}}</h4>
+            <p class="card-category">{{product.libelle}}
+          </div>
+          <div class="col-6" >
+            <div class="float-right">
+              <button type="button" (click)="openDeleteEmpDialog(product)" style="border-radius: 12px" class="btn btn-danger btn-sm" matTooltip="delete product">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+            <div class="float-right">
+              <button type="button" (click)="openEditEmpDialog(product)" style="border-radius: 12px" class="btn btn-info btn-sm" matTooltip="edit product">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="card-footer" >
+        <div class="col-6" style="font-size:10px">
+            <i class="material-icons">category</i>
+            {{product.detailProduit.categorieProduit}}
+        </div>
+        <div class="col-6"  >
+          <div class="float-right">
+             {{product.prixUnitaire}} DT
+          </div>
+        </div>
       </div>
     </div>
+
+
+<!--<div class="card card-stats">-->
+<!--  <div class="card-header card-header-success card-header-icon">-->
+<!--    <div class="card-icon">-->
+<!--&lt;!&ndash;      <i class="material-icons">store</i>&ndash;&gt;-->
+<!--      <img class="img-fluid"  src="./assets/img/cover.jpeg" alt="">-->
+<!--    </div>-->
+<!--    <p class="card-category">{{product.detailProduit.categorieProduit}}</p>-->
+<!--    <h3 class="card-title">{{product.prixUnitaire}} DT</h3>-->
+<!--  </div>-->
+<!--  <div class="card-footer">-->
+<!--    <div class="stats">-->
+<!--      <i class="material-icons">date_range</i> Last 24 Hours-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

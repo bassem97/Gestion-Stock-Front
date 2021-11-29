@@ -6,6 +6,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ListProductComponent} from "./list-product/list-product.component";
 import {ProductComponent} from "./product/product.component";
+import {MatCardModule} from "@angular/material/card";
+import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
 
 
@@ -26,6 +28,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
+    MatTooltipModule,
     MatIconModule
   ]
 })

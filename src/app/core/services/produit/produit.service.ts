@@ -22,7 +22,7 @@ export class ProduitService {
   }
 
   update(produit: Produit) {
-    return this.http.put(this.url + "update/" + produit.id, produit);
+    return this.http.put(this.url + "update/" + produit.idProduit, produit);
   }
 
   delete(id: number) {

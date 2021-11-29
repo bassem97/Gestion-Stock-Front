@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content ">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-10">
@@ -77,7 +77,8 @@
                   </div> -->
                 </div>
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+              <button mat-raised-button *ngIf="data[0]!=null" type="submit" class="btn btn-danger pull-right">Update Product</button>
+              <button mat-raised-button *ngIf="data[0]==null" type="submit" class="btn btn-danger pull-right">Add Product</button>
               <div class="clearfix"></div>
             </form>
           </div>

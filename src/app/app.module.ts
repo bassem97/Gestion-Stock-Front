@@ -13,6 +13,7 @@ import {ModulesModule} from "./modules/modules.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {ProductModule} from "./modules/product/product.module";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {ProductModule} from "./modules/product/product.module";
         ModulesModule,
         MatCardModule,
         MatButtonModule,
-        ProductModule
+        ProductModule,
+        MatIconModule
     ],
   providers: [],
   bootstrap: [AppComponent]
