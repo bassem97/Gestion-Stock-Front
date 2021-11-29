@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-// @ts-ignore
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
@@ -17,10 +15,12 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: undefined;
   private yScrollStack: number[] = [];
+  showDiv: boolean;
 
   constructor( public location: Location, private router: Router) {}
 
   ngOnInit() {
+    this.showDiv = true;
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -139,11 +139,7 @@ export class AdminLayoutComponent implements OnInit {
   isMaps(path:any) {
       let titlee = this.location.prepareExternalUrl(this.location.path());
       titlee = titlee.slice( 1 );
-      if (path == titlee) {
-          return false;
-      } else {
-          return true;
-      }
+      return path != titlee;
   }
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
@@ -160,4 +156,7 @@ export class AdminLayoutComponent implements OnInit {
       return bool;
   }
 
+  showDivFunction() {
+    this.showDiv = !this.showDiv
+  }
 }

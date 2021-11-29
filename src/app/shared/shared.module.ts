@@ -4,6 +4,9 @@ import {RouterModule} from "@angular/router";
 import {FooterComponent} from "./footer/footer.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
+import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -11,7 +14,8 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    DeleteDialogComponent,
   ],
   exports: [
     SidebarComponent,
@@ -21,6 +25,8 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
   imports: [
     CommonModule,
     RouterModule,
+    MatDialogModule,
+    MatButtonModule,
   ]
 })
 export class SharedModule { }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "material-dashboard-angular": {
+    "gestion-stock-front": {
       "root": "e2e",
       "sourceRoot": "src",
       "projectType": "application",
@@ -88,14 +88,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "gestion-stock-front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "material-dashboard-angular:build:production"
+              "browserTarget": "gestion-stock-front:build:production"
             },
             "development": {
-              "browserTarget": "material-dashboard-angular:build:development"
+              "browserTarget": "gestion-stock-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -103,7 +103,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "gestion-stock-front:build"
           }
         },
         "test": {
@@ -146,7 +146,7 @@
         }
       }
     },
-    "material-dashboard-angular-e2e": {
+    "gestion-stock-front-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -155,7 +155,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "material-dashboard-angular:serve"
+            "devServerTarget": "gestion-stock-front:serve"
           }
         },
         "lint": {
@@ -170,7 +170,7 @@
       }
     }
   },
-  "defaultProject": "material-dashboard-angular",
+  "defaultProject": "gestion-stock-front",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app"

@@ -3,7 +3,7 @@ import {Rayon} from "./rayon";
 import {DetailProduit} from "./detailProduit";
 
 export class Produit {
-  id: number;
+  idProduit:number;
   code: string;
   libelle: string;
   prixUnitaire: number;
