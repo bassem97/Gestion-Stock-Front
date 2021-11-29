@@ -7,6 +7,8 @@ import {Rayon} from "../../../core/models/rayon";
 import {RayonService} from "../../../core/services/rayon/rayon.service";
 import {StockService} from "../../../core/services/stock/stock.service";
 import {ProduitService} from "../../../core/services/produit/produit.service";
+import {fournisseur} from "../../../core/models/fournisseur";
+import {FournisseurService} from "../../../core/services/fournisseur.service";
 
 @Component({
   selector: 'app-add-product',
@@ -19,12 +21,14 @@ export class AddProductComponent implements OnInit {
   product: Produit;
   stocks: Stock[];
   rayons: Rayon[];
+  fournisseursArray: fournisseur[];
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Array<any>,
               private formBuilder: FormBuilder,
               private productService: ProduitService,
               private rayonService: RayonService,
+              private fournisseurService: FournisseurService,
               private stockService: StockService) { }
 
   ngOnInit(): void {
@@ -34,6 +38,13 @@ export class AddProductComponent implements OnInit {
       if (this.data[0]) {
         const toSelect = this.stocks.find(stock => stock.idStock == this.product.stock.idStock);
         this.productForm.get('stock')?.setValue(toSelect);
+      }
+    });
+    this.fournisseurService.findAll().subscribe(value => {
+      this.fournisseursArray = value;
+      if (this.data[0]) {
+        const toSelect = this.fournisseursArray.filter(fournisseur => this.product.fournisseurs.findIndex(value1 => fournisseur.idFournisseur == value1.idFournisseur) != -1);
+        this.productForm.get('fournisseurs')?.setValue(toSelect);
       }
     });
     this.rayonService.findAll().subscribe(value => {
@@ -50,6 +61,7 @@ export class AddProductComponent implements OnInit {
       rayon: [this.product.rayon, [Validators.required]],
       stock: [this.product.stock, [Validators.required]],
       categorie: [this.product.detailProduit.categorieProduit, [Validators.required]],
+      fournisseurs: [this.product.fournisseurs, [Validators.required]],
     });
 
     if (this.data[0]) {
@@ -76,7 +88,11 @@ export class AddProductComponent implements OnInit {
   }
 
   getErrorStock() {
-    return this.rayon.hasError('required') ? 'Field is required' : "";
+    return this.stock.hasError('required') ? 'Field is required' : "";
+  }
+
+  getErrorFournisseur() {
+    return this.fournisseurs.hasError('required') ? 'Field is required' : "";
   }
 
 
@@ -88,11 +104,13 @@ export class AddProductComponent implements OnInit {
   get rayon() {return this.productForm.get('rayon') as FormControl;}
   get stock() {return this.productForm.get('stock') as FormControl;}
   get categorie() {return this.productForm.get('categorie') as FormControl;}
+  get fournisseurs() {return this.productForm.get('fournisseurs') as FormControl;}
 
   saveProduct() {
     this.product.stock = this.stock.value;
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
+    this.product.fournisseurs = this.fournisseurs.value;
     this.productService.add(this.product).subscribe(value => {
       // @ts-ignore
       this.product = value;

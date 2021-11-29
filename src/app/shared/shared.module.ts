@@ -7,7 +7,6 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -29,10 +28,5 @@ import {MatButtonModule} from "@angular/material/button";
     MatDialogModule,
     MatButtonModule,
   ]
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatButtonModule
-    ]
 })
 export class SharedModule { }

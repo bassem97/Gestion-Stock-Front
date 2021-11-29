@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Categorie</mat-label>
                     <mat-select required value="ELECTROMENAGER" formControlName="categorie">
@@ -89,6 +89,20 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fournisseur</mat-label>
+                    <mat-select required multiple formControlName="fournisseurs">
+                      <mat-option *ngFor="let fournisseur of fournisseursArray" [value]="fournisseur">
+                        {{fournisseur.code}} - {{fournisseur.libelle}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!fournisseurs.valid && fournisseurs.touched">
+                      {{ getErrorFournisseur() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
               </div>
 
               <button *ngIf="data[0]!=null; else add" mat-raised-button type="submit" class="btn btn-danger pull-right"
