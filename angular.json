@@ -38,7 +38,10 @@
             "allowedCommonJsDependencies" : [
               "rxjs/add/operator/filter",
               "jquery",
-              "chartist"
+              "chartist",
+              "socket.io-client",
+              "stompjs",
+              "sockjs-client"
             ]
           },
           "configurations": {
@@ -66,16 +69,6 @@
               ]
             },
             "development": {
-//              "buildOptimizer": false,
-//              "optimization": {
-//                "scripts": true,
-//                "styles": {
-//                  "minify": false,
-//                  "inlineCritical": true
-//                },
-//                "fonts": true
-//              },
-//              "outputHashing": "all"
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -103,7 +96,10 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestion-stock-front:build"
+            "browserTarget": "gestion-stock-front:build",
+
+
+
           }
         },
         "test": {

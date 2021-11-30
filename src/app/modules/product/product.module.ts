@@ -9,6 +9,9 @@ import {ProductComponent} from "./product/product.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -23,14 +26,17 @@ import {MatIconModule} from "@angular/material/icon";
     ListProductComponent,
     ProductComponent
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTooltipModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTooltipModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatDialogModule
+    ]
 })
 export class ProductModule { }

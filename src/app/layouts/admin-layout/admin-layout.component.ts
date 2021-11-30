@@ -5,6 +5,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
+import {WebSocketAPIService} from "../../core/services/webSocketAPI/web-socket-api.service";
 
 @Component({
   selector: 'app-admin-layout',
@@ -17,7 +18,11 @@ export class AdminLayoutComponent implements OnInit {
   private yScrollStack: number[] = [];
   showDiv: boolean;
 
-  constructor( public location: Location, private router: Router) {}
+  constructor( public location: Location,
+               private router: Router,
+
+
+  ) {}
 
   ngOnInit() {
     this.showDiv = true;
@@ -155,7 +160,6 @@ export class AdminLayoutComponent implements OnInit {
       }
       return bool;
   }
-
   showDivFunction() {
     this.showDiv = !this.showDiv
   }

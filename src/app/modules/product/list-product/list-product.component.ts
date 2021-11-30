@@ -3,6 +3,8 @@ import {Produit} from "../../../core/models/produit";
 import {ProduitService} from "../../../core/services/produit/produit.service";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {MatDialog} from "@angular/material/dialog";
+import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socket-api.service";
+import {WebSocketMessage} from "../../../core/models/WebSocketMessage";
 
 @Component({
   selector: 'app-list-product',
@@ -14,40 +16,44 @@ export class ListProductComponent implements OnInit {
   products: Produit[];
   showFormTemplate: boolean;
   constructor(private produitService: ProduitService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private webSocketAPI: WebSocketAPIService
               ) { }
 
 
-
   ngOnInit(): void {
+    this.refreshProducts();
+    this.webSocketAPI._connect();
+    this.webSocketAPI.remoteMonitoringComp.subscribe(res => {
+      setTimeout(() => {
+        this.refreshProducts();
+      }, 500);
+    });
     this.showFormTemplate = false;
-    this.refreshList();
-
   }
 
-  refreshList(){
+  private refreshProducts() {
     this.produitService.findAll().subscribe(value => {
       this.products = value;
-      console.log(value);
     })
   }
 
   showForm(){
+    // @ts-ignore
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '60%',
-      height: '76%',
-      data: [null, 'produit']
+      height: '64%',
+      data: [null, 'produit'],
+
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // this.produitService.add(product)
-      }
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
-  delete(product: Produit) {
-    this.produitService.delete(product.idProduit).subscribe(result => {
-      this.refreshList()
-    })
+  delete(id: number) {
+    this.produitService.delete(id).subscribe();
   }
+
+  // refreshListAfterDelete(id: number) {
+  //   this.products = this.products.filter(value => value.idProduit != id);
+  // }
 }

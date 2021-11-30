@@ -1,0 +1,15 @@
+<form class="w-50 mx-auto" #ngForm="ngForm" [formGroup]="myForm">
+  <div class="form-group">
+    <label for="code">Code</label>
+    <input name="code_" formControlName="code_" id="code" type="text" class="form-control">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="libelle">Libelle</label>
+    <input name="libelle_" formControlName="libelle_" id="libelle" type="text"  class="form-control">
+  </div>
+  <br>
+  <button class="btn btn-info" [disabled]="!myForm.valid" (click)="appliquer_ajout_modif()">Appliquer</button>
+  <br><br>
+  <button class="btn btn-primary" (click)="ngForm.resetForm()">Reset</button>
+</form>
