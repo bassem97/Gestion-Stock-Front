@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Stock} from "../../../core/models/stock";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {StockService} from "../../../core/services/stock/Stock.service";
+import {StockService} from "../../../core/services/stock/stock.service";
 
 @Component({
   selector: 'app-add-stock',

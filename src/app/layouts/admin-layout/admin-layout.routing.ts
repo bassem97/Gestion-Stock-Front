@@ -58,7 +58,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'product',        component: ListProductComponent },
     { path: 'fournisseur',    component: ListfournisseurcomponentComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
 
     { path: 'stock',        component: ListStockComponent },
 

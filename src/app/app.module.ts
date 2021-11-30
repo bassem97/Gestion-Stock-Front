@@ -21,7 +21,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    ListStockComponent,
   ],
   imports: [
     BrowserAnimationsModule,

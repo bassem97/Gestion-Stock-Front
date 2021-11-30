@@ -1,10 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Stock} from "../../../core/models/stock";
-import {StockService} from "../../../core/services/stock/Stock.service";
-import {Produit} from "../../../core/models/produit";
 import {MatDialog} from "@angular/material/dialog";
-import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
 import {AddStockComponent} from "../add-stock/add-stock.component";
+import {StockService} from "../../../core/services/stock/stock.service";
 
 
 @Component({

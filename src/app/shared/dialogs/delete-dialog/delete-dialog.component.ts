@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {Produit} from "../../../core/models/produit";
+import {Stock} from "../../../core/models/stock";
 
 @Component({
   selector: 'app-delete-dialog',
@@ -23,8 +24,8 @@ export class DeleteDialogComponent implements OnInit {
   deleteMessage() {
     let message: string;
     message = 'Are you sure you want to delete ';
-    if (this.data[1] === 'produit')
-      message += (<Produit>this.data[0]).code
+    if (this.data[1] === 'stock')
+      message += (<Stock>this.data[0].idStock)
 
     return message;
   }
