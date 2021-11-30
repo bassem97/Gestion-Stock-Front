@@ -53,7 +53,7 @@ export class ListProductComponent implements OnInit {
     this.produitService.delete(id).subscribe();
   }
 
-  refreshListAfterDelete(id: number) {
-    this.products = this.products.filter(value => value.idProduit != id);
-  }
+  // refreshListAfterDelete(id: number) {
+  //   this.products = this.products.filter(value => value.idProduit != id);
+  // }
 }
