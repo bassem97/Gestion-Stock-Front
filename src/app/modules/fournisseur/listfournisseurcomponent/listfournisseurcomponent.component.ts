@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {fournisseur} from "../../../core/models/fournisseur";
 import {FournisseurService} from "../../../core/services/fournisseur.service";
-import {param} from "jquery";
 
 @Component({
   selector: 'app-listfournisseurcomponent',
@@ -18,6 +17,7 @@ export class ListfournisseurcomponentComponent implements OnInit {
   showinput:boolean=false;
   find: number=0;
   isshow:boolean=false;
+  showbyid:boolean=false;
 
   constructor(private fournisseurService:FournisseurService) { }
 
@@ -63,16 +63,31 @@ this.fournisseurService.modifyfournisseur($event).subscribe( param =>{
   search_fournisseur($event: string) {
     this.listmanipulation = this.listfournisseurs;
     this.listsearch=[];
-    for (let entry of Array.from(this.listmanipulation.entries())) {
-      if (entry[1].libelle.indexOf($event) != -1 ) {
-        this.isfound = entry[1];
-        this.find=1;
-      }
-      else
-        this.find=0;
-      if(this.find)
+    for (let entryid of Array.from(this.listmanipulation.entries())) {
+        if (entryid[1].idFournisseur.toString().indexOf($event) != -1) {
+          this.showbyid = true;
+          this.isfound = entryid[1];
+          this.find = 1;
+        }
+        else {
+          this.find = 0;
+          this.showbyid = false;
+        }
+      if (this.find)
         this.listsearch.push(this.isfound);
-      this.find=0;
+    }
+
+    if(!this.showbyid) {
+      this.listsearch = [];
+      for (let entryleft of Array.from(this.listmanipulation.entries())) {
+        if (entryleft[1].libelle.indexOf($event) != -1 || entryleft[1].code.indexOf($event) != -1) {
+          this.isfound = entryleft[1];
+          this.find = 1;
+        } else
+          this.find = 0;
+        if (this.find)
+          this.listsearch.push(this.isfound);
+      }
     }
     this.listmanipulation=this.listsearch;
     if (!$event)

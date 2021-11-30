@@ -20,14 +20,14 @@ export class AddEditFournisseurcomponentComponent implements OnInit {
   ngOnInit(): void {
     if(this.name !='Ajouter') {
       this.myForm = new FormGroup({
-        'code_': new FormControl(this.fournisseur.code, Validators.required),
-        'libelle_': new FormControl(this.fournisseur.libelle, Validators.required)
+        'code_': new FormControl(this.fournisseur.code, [Validators.required,Validators.minLength(4)]),
+        'libelle_': new FormControl(this.fournisseur.libelle, [Validators.required,Validators.minLength(4)])
       })
     }
     else {
       this.myForm = new FormGroup({
-        'code_': new FormControl(null, Validators.required),
-        'libelle_': new FormControl(null, Validators.required)
+        'code_': new FormControl(null, [Validators.required,Validators.minLength(4)]),
+        'libelle_': new FormControl(null, [Validators.required,Validators.minLength(4)])
       })
     }
   }
