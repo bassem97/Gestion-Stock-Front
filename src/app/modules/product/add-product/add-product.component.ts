@@ -111,21 +111,13 @@ export class AddProductComponent implements OnInit {
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
     this.product.fournisseurs = this.fournisseurs.value;
-    this.productService.add(this.product).subscribe(value => {
-      // @ts-ignore
-      this.product = value;
-      this.dialogRef.close(this.product);
-    });
+    this.productService.add(this.product).subscribe(value =>this.dialogRef.close(value));
   }
 
   updateProduct() {
     this.product.stock = this.stock.value;
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
-    this.productService.update(this.product).subscribe(value => {
-      // @ts-ignore
-      this.product = value;
-      this.dialogRef.close(this.product);
-    });
+    this.productService.update(this.product).subscribe(value => this.dialogRef.close(value));
   }
 }
