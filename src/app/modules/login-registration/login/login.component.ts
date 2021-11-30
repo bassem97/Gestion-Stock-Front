@@ -4,7 +4,6 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  NgModel,
 } from '@angular/forms';
 import { Client } from 'src/app/core/models/client';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -17,7 +16,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
-    if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+    if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
       return;
     }
     if (control.value !== matchingControl.value) {
@@ -156,10 +155,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  register() {
+    this.authService.register(this.client).subscribe(
+      (data) => {
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   login() {
     this.authService.authenticate(this.loginModel).subscribe((res) => {
       if (res) {
-        localStorage['token'] = res.token;
+     localStorage['token'] = res.token;
+      
+     
       }
     });
 

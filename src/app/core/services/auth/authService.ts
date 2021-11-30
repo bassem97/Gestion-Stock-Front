@@ -8,8 +8,7 @@ import {
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Client } from '../../models/client';
-import { Observable, throwError } from 'rxjs';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../../models/login';
 @Injectable({
   providedIn: 'root',
@@ -28,12 +27,13 @@ export class AuthenticationService {
     this.headers.append('Access-Control-Allow-Origin', '*');
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     //
-    // let body = new URLSearchParams();
-    // body.set('user', login.username);
-    // body.set('password', login.password);
+   // let body = new URLSearchParams();
+     //body.set('user', login.username);
+    //body.set('password', login.password);
+
     const body = new HttpParams()
-      .set(`user`, login.username)
-      .set(`password`, login.password);
+      .set('user', login.username)
+      .set('password', login.password);
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
@@ -43,6 +43,7 @@ export class AuthenticationService {
     return this.http.post(this.url + 'Authentication', body.toString(), {
       headers,
       observe: 'response',
+
     });
   }
 
@@ -83,4 +84,8 @@ export class AuthenticationService {
     localStorage.removeItem('username');
     window.location.reload();
   }
+
+  register = (client: Client) => {
+    return this.http.post(this.url + 'register', client);
+  };
 }

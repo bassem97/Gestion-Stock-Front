@@ -11,6 +11,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTabsModule} from "@angular/material/tabs";
 
+import { FormsModule , ReactiveFormsModule  }   from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -25,6 +26,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatCheckboxModule,
     MatMenuModule,
     MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class LoginRegistrationModule {}
