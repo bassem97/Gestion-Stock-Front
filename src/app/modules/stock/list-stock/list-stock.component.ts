@@ -4,6 +4,7 @@ import {StockService} from "../../../core/services/stock/Stock.service";
 import {Produit} from "../../../core/models/produit";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
+import {AddStockComponent} from "../add-stock/add-stock.component";
 
 
 @Component({
@@ -27,8 +28,16 @@ export class ListStockComponent implements OnInit {
     })
     this.refreshList();
   }
+
   showForm(){
-    this.showFormTemplate =true;
+    // @ts-ignore
+    const dialogRef = this.dialog.open(AddStockComponent, {
+      width: '60%',
+      height: '64%',
+      data: [null, 'stock'],
+
+    });
+    dialogRef.afterClosed().subscribe();
   }
   refreshList(){
     this.stockService.findAll().subscribe(value => {

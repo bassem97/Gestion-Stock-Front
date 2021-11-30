@@ -3,6 +3,7 @@ import {Stock} from "../../../core/models/stock";
 import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogStockComponent} from "../../../shared/dialogs/delete-dialog-stock/delete-dialog-stock.component";
+import {AddStockComponent} from "../add-stock/add-stock.component";
 
 
 @Component({
@@ -28,6 +29,13 @@ export class StockComponent implements OnInit {
       if (result) {
         this.deleteEvent.emit(this.stock)
       }
+    });
+  }
+  openEditEmpDialog(stock: Stock) {
+    this.dialog.open(AddStockComponent, {
+      width: '60%',
+      height: '76%',
+      data: [stock, 'stock']
     });
   }
 
