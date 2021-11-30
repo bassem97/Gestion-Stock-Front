@@ -15,6 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {ProductModule} from "./modules/product/product.module";
 import {MatIconModule} from "@angular/material/icon";
 import { ListStockComponent } from './modules/stock/list-stock/list-stock.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -22,20 +23,21 @@ import { ListStockComponent } from './modules/stock/list-stock/list-stock.compon
     AdminLayoutComponent,
     ListStockComponent,
   ],
-    imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        RouterModule,
-        AppRoutingModule,
-        SharedModule,
-        ModulesModule,
-        MatCardModule,
-        MatButtonModule,
-        ProductModule,
-        MatIconModule
-    ],
+  imports: [
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    SharedModule,
+    ModulesModule,
+    MatCardModule,
+    MatButtonModule,
+    ProductModule,
+    MatIconModule,
+    MatTooltipModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

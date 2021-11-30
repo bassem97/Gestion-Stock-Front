@@ -7,6 +7,7 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import { DeleteDialogStockComponent } from './dialogs/delete-dialog-stock/delete-dialog-stock.component';
 
 
 
@@ -16,6 +17,7 @@ import {MatButtonModule} from "@angular/material/button";
     NavbarComponent,
     SidebarComponent,
     DeleteDialogComponent,
+    DeleteDialogStockComponent,
   ],
   exports: [
     SidebarComponent,

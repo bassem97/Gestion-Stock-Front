@@ -25,11 +25,11 @@ export class StockService {
     return this.http.put(this.url + "update/" + stock.idStock, stock);
   }
 
-  delete(id: number) {
+  delete(id: BigInt) {
     return this.http.delete(this.url + "delete/" + id);
   }
 
-  findById(id: number): Observable<Stock> {
+  findById(id: BigInt): Observable<Stock> {
     return this.http.get<Stock>(this.url + "findById/" + id);
   }
 }
