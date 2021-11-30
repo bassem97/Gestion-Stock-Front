@@ -21,19 +21,22 @@ export class ListProductComponent implements OnInit {
               ) { }
 
 
-
   ngOnInit(): void {
+    this.refreshProducts();
     this.webSocketAPI._connect();
     this.webSocketAPI.remoteMonitoringComp.subscribe(res => {
-      this.refreshListAfterDelete(JSON.parse(res.body).senderId);
+      setTimeout(() => {
+        this.refreshProducts();
+      }, 500);
     });
     this.showFormTemplate = false;
+  }
+
+  private refreshProducts() {
     this.produitService.findAll().subscribe(value => {
       this.products = value;
     })
-
   }
-
 
   showForm(){
     // @ts-ignore
@@ -43,21 +46,11 @@ export class ListProductComponent implements OnInit {
       data: [null, 'produit'],
 
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        let aux = this.products.find(value => value.idProduit == result.idProduit);
-        if (aux)
-          this.products[this.products.indexOf(aux)] = aux;
-        else
-          this.products.push(result);
-      }
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   delete(id: number) {
-    this.produitService.delete(id).subscribe(result => {
-      this.refreshListAfterDelete(id);
-    });
+    this.produitService.delete(id).subscribe();
   }
 
   refreshListAfterDelete(id: number) {
