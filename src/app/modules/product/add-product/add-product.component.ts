@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Produit} from "../../../core/models/produit";
@@ -31,6 +31,7 @@ export class AddProductComponent implements OnInit {
   selectedFile: File = null;
   public imagePath;
   imgURL: any;
+
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Array<any>,
               private formBuilder: FormBuilder,
@@ -38,7 +39,37 @@ export class AddProductComponent implements OnInit {
               private rayonService: RayonService,
               private fournisseurService: FournisseurService,
               private uploadService: UploadService,
-              private stockService: StockService) { }
+              private stockService: StockService) {
+  }
+
+  // Get fields value as form control
+  get code() {
+    return this.productForm.get('code') as FormControl;
+  }
+
+  get libelle() {
+    return this.productForm.get('libelle') as FormControl;
+  }
+
+  get prixUnitaire() {
+    return this.productForm.get('prixUnitaire') as FormControl;
+  }
+
+  get rayon() {
+    return this.productForm.get('rayon') as FormControl;
+  }
+
+  get stock() {
+    return this.productForm.get('stock') as FormControl;
+  }
+
+  get categorie() {
+    return this.productForm.get('categorie') as FormControl;
+  }
+
+  get fournisseurs() {
+    return this.productForm.get('fournisseurs') as FormControl;
+  }
 
   ngOnInit(): void {
     this.product = this.data[0] || new Produit();
@@ -82,6 +113,7 @@ export class AddProductComponent implements OnInit {
   getErrorCode() {
     return this.code.hasError('required') ? 'Field is required' : "";
   }
+
   getErrorLibelle() {
     return this.libelle.hasError('required') ?
       'Field is required' :
@@ -104,18 +136,22 @@ export class AddProductComponent implements OnInit {
     return this.fournisseurs.hasError('required') ? 'Field is required' : "";
   }
 
-
-
-  // Get fields value as form control
-  get code() {return this.productForm.get('code') as FormControl;}
-  get libelle() {return this.productForm.get('libelle') as FormControl;}
-  get prixUnitaire() {return this.productForm.get('prixUnitaire') as FormControl;}
-  get rayon() {return this.productForm.get('rayon') as FormControl;}
-  get stock() {return this.productForm.get('stock') as FormControl;}
-  get categorie() {return this.productForm.get('categorie') as FormControl;}
-  get fournisseurs() {return this.productForm.get('fournisseurs') as FormControl;}
-
   saveProduct() {
+    this.setAttributes();
+    this.productService.add(this.product).subscribe(value => this.dialogRef.close(value));
+  }
+
+  updateProduct() {
+    this.setAttributes();
+    this.productService.update(this.product).subscribe(value => this.dialogRef.close(value));
+  }
+
+  onSelectFile(files) {
+    this.selectedFile = files[0] as File;
+    console.log(this.selectedFile);
+  }
+
+  setAttributes() {
     this.product.stock = this.stock.value;
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
@@ -127,39 +163,5 @@ export class AddProductComponent implements OnInit {
       this.uploadService.upload(formdata).subscribe();
       this.product.image = this.selectedFile.name;
     }
-    this.productService.add(this.product).subscribe(value =>this.dialogRef.close(value));
-  }
-
-  updateProduct() {
-    this.product.stock = this.stock.value;
-    this.product.detailProduit.categorieProduit = this.categorie.value;
-    this.product.rayon = this.rayon.value;
-    this.productService.update(this.product).subscribe(value => this.dialogRef.close(value));
-  }
-
- /* onFileChange(event) {
-    const file: File = event.target.files[0];
-    console.log(file.name);
-    /!*console.log(files.value);
-    // @ts-ignore
-    this.fileU = files.target.item(0);
-    let   reader = new FileReader();
-    reader.onload = (event: any) => this.file = event.target.result;
-    reader.readAsDataURL(this.fileU);
-    this.loader = true;
-    console.log(this.fileU);*!/
-  }*/
-
-  onSelectFile(files) {
-
-    this.selectedFile = files[0] as File;
-    console.log(this.selectedFile);
-
-   /* const reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (event) => {
-      this.imgURL = reader.result;
-    };*/
   }
 }
