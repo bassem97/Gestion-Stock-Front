@@ -1,0 +1,14 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn btn-warning" (click)="showForm()">Add new Stock</button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4" *ngFor="let stock of stocks" >
+        <!--suppress BadExpressionStatementJS -->
+        <app-stock [stock]="stock" (deleteEvent)="delete(stock.idStock)"></app-stock>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,5 +1,5 @@
 export class Stock {
-  idStock: number;
+  idStock: BigInt;
   qte: number;
   qteMin: number;
   libelleStock: string;

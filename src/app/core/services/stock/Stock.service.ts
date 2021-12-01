@@ -29,7 +29,7 @@ export class StockService {
     return this.http.delete(this.url + "delete/" + id);
   }
 
-  findById(id: number): Observable<Stock> {
+  findById(id: BigInt): Observable<Stock> {
     return this.http.get<Stock>(this.url + "findById/" + id);
   }
 }

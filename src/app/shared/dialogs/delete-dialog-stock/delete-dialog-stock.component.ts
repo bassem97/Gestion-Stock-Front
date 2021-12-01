@@ -1,17 +1,15 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Observable} from 'rxjs';
-import {Produit} from "../../../core/models/produit";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Stock} from "../../../core/models/stock";
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
-  styleUrls: ['./delete-dialog.component.css']
+  selector: 'app-delete-dialog-stock',
+  templateUrl: './delete-dialog-stock.component.html',
+  styleUrls: ['./delete-dialog-stock.component.css']
 })
-export class DeleteDialogComponent implements OnInit {
+export class DeleteDialogStockComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    public dialogRef: MatDialogRef<DeleteDialogStockComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Array<any>) {}
 
   onNoClick(): void {
