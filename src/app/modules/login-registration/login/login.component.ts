@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { DeleteDialogComponent } from '../../../shared/dialogs/delete-dialog/delete-dialog.component';
 import { Login } from '../../../core/models/login';
 import { AuthenticationService } from '../../../core/services/auth/authService';
+import { ClientService } from '../../../core/services/client/client.service';
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private clientS: ClientService
   ) {}
 
   ngOnInit(): void {
@@ -169,12 +171,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.authenticate(this.loginModel).subscribe((res) => {
-      
       if (res) {
         // @ts-ignore
         localStorage['token'] = res.token;
-      
-        this.router.navigate(['/dashboard']);
+        
+          
+            this.router.navigate(['/dashboard']);
+          }
+        });
       } else if (res === false) {
         this.DeleteDialogComponent = this.dialog.open(DeleteDialogComponent, {
           width: '350px',
