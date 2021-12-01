@@ -6,7 +6,13 @@
         <mat-card-content>
           <form [formGroup]="signUpForm">
             <mat-form-field>
-              <input [(ngModel)]="client.nom" formControlName="nom" matInput placeholder="nom" required/>
+              <input
+                [(ngModel)]="client.nom"
+                formControlName="nom"
+                matInput
+                placeholder="nom"
+                required
+              />
               <mat-icon matSuffix>perm_identity</mat-icon>
               <mat-error *ngIf="!nom.valid && nom.touched">
                 {{ getErrorNom() }}
@@ -78,12 +84,12 @@
               </mat-error>
             </mat-form-field>
             <button
-              (tsSubmitIfValid)="register()"
               [disabled]="signUpForm.invalid"
               class="login-button"
               color="primary"
               mat-raised-button
               type="submit"
+              (click)="onClickSignUp()"
             >
               Sign Up
             </button>
@@ -130,7 +136,7 @@
               color="primary"
               class="login-button"
               type="submit"
-              (tsSubmitIfValid)="login()"
+              (click)="onSubmit()"
             >
               Log In
             </button>

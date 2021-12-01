@@ -14,7 +14,7 @@ import { Login } from '../../models/login';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  url = 'http://localhost:8080/GE/';
+  url = 'http://localhost:8081/';
   jwt: string;
   email: string;
   headers: HttpHeaders = new HttpHeaders();
@@ -22,13 +22,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   authenticate(login: Login) {
-    this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    this.headers.append('Access-Control-Allow-Methods', 'GET');
-    this.headers.append('Access-Control-Allow-Origin', '*');
-    this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    // this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    // this.headers.append('Access-Control-Allow-Methods', 'GET');
+    // this.headers.append('Access-Control-Allow-Origin', '*');
+    // this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     //
-   // let body = new URLSearchParams();
-     //body.set('user', login.username);
+    // let body = new URLSearchParams();
+    //body.set('user', login.username);
     //body.set('password', login.password);
 
     const body = new HttpParams()
@@ -39,12 +39,7 @@ export class AuthenticationService {
     });
     headers.append('response-type', 'text');
 
-    console.log(body);
-    return this.http.post(this.url + 'Authentication', body.toString(), {
-      headers,
-      observe: 'response',
-
-    });
+    return this.http.post(this.url + 'authenticate', login);
   }
 
   getToken() {

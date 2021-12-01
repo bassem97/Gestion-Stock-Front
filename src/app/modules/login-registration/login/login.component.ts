@@ -5,12 +5,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Client } from 'src/app/core/models/client';
+import { Client } from '../../../core/models/client';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteDialogComponent } from '../../../shared/dialogs/delete-dialog/delete-dialog.component';
-import { Login } from 'src/app/core/models/login';
-import { AuthenticationService } from 'src/app/core/services/auth/authService';
+import { Login } from '../../../core/models/login';
+import { AuthenticationService } from '../../../core/services/auth/authService';
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -155,7 +155,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  register() {
+  onClickSignUp() {
+    console.log('aa');
     this.authService.register(this.client).subscribe(
       (data) => {
         this.router.navigate(['/login']);
@@ -166,18 +167,20 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  login() {
+  onSubmit() {
     this.authService.authenticate(this.loginModel).subscribe((res) => {
-      if (res) {
-     localStorage['token'] = res.token;
       
-     
+      if (res) {
+        // @ts-ignore
+        localStorage['token'] = res.token;
+      
+        this.router.navigate(['/dashboard']);
+      } else if (res === false) {
+        this.DeleteDialogComponent = this.dialog.open(DeleteDialogComponent, {
+          width: '350px',
+          data: 'Username/password Invalid/does not exist ! ',
+        });
       }
-    });
-
-    this.DeleteDialogComponent = this.dialog.open(DeleteDialogComponent, {
-      width: '350px',
-      data: 'Username/password Invalid/does not exist ! ',
     });
   }
 }

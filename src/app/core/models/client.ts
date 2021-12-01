@@ -7,5 +7,4 @@ export class Client {
   categorieClient: string;
   proffession: string;
 
-  constructor() {}
 }
