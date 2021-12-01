@@ -26,7 +26,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     ListProductComponent,
     ProductComponent
   ],
-    imports: [
+  imports: [
         CommonModule,
         MatFormFieldModule,
         MatInputModule,

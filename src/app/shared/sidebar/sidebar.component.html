@@ -1,12 +1,14 @@
-<div class="logo">
+<div>
+<!--  <div   class="logo  dark-mode">-->
+  <div   class="logo  ">
     <a href="https://www.creative-tim.com" class="simple-text">
 
-        Stock Manager
+      Stock Manager
     </a>
-</div>
-<div class="sidebar-wrapper">
-  <div *ngIf="isMobileMenu()">
-    <form class="navbar-form">
+  </div>
+  <div   class="sidebar-wrapper dark-mode"  >
+    <div *ngIf="isMobileMenu()">
+      <form class="navbar-form">
       <span class="bmd-form-group">
         <div class="input-group no-border">
           <input type="text" value="" class="form-control" placeholder="Search...">
@@ -16,48 +18,49 @@
           </button>
         </div>
       </span>
-    </form>
-    <ul class="nav navbar-nav nav-mobile-menu">
+      </form>
+      <ul class="nav navbar-nav nav-mobile-menu">
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
-                <i class="material-icons">dashboard</i>
-                <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                </p>
-            </a>
+          <a class="nav-link" href="javascript:void(0)">
+            <i class="material-icons">dashboard</i>
+            <p>
+              <span class="d-lg-none d-md-block">Stats</span>
+            </p>
+          </a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">notifications</i>
-                <span class="notification">5</span>
-                <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                <a class="dropdown-item" href="#">Another Notification</a>
-                <a class="dropdown-item" href="#">Another One</a>
-            </div>
+          <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">notifications</i>
+            <span class="notification">5</span>
+            <p>
+              <span class="d-lg-none d-md-block">Some Actions</span>
+            </p>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Mike John responded to your email</a>
+            <a class="dropdown-item" href="#">You have 5 new tasks</a>
+            <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+            <a class="dropdown-item" href="#">Another Notification</a>
+            <a class="dropdown-item" href="#">Another One</a>
+          </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
-                <i class="material-icons">person</i>
-                <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                </p>
-            </a>
+          <a class="nav-link" href="javascript:void(0)">
+            <i class="material-icons">person</i>
+            <p>
+              <span class="d-lg-none d-md-block">Account</span>
+            </p>
+          </a>
         </li>
+      </ul>
+    </div>
+    <ul class="nav">
+      <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+        <a class="nav-link" [routerLink]="[menuItem.path]">
+          <i class="material-icons">{{menuItem.icon}}</i>
+          <p>{{menuItem.title}}</p>
+        </a>
+      </li>
     </ul>
   </div>
-    <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
-            </a>
-        </li>
-    </ul>
 </div>

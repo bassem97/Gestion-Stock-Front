@@ -8,6 +8,7 @@ import {StockModule} from "./stock/stock.module";
 @NgModule({
   declarations: [
   ],
+
   imports: [
     CommonModule,
     FournisseurModule,
