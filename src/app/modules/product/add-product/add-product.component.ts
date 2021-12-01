@@ -9,6 +9,7 @@ import {StockService} from "../../../core/services/stock/stock.service";
 import {ProduitService} from "../../../core/services/produit/produit.service";
 import {fournisseur} from "../../../core/models/fournisseur";
 import {FournisseurService} from "../../../core/services/fournisseur.service";
+import {UploadService} from "../../../core/services/upload/upload.service";
 
 @Component({
   selector: 'app-add-product',
@@ -22,13 +23,21 @@ export class AddProductComponent implements OnInit {
   stocks: Stock[];
   rayons: Rayon[];
   fournisseursArray: fournisseur[];
+  file: string;
+  loader = false;
+  fileU: File;
 
+  // @ts-ignore
+  selectedFile: File = null;
+  public imagePath;
+  imgURL: any;
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Array<any>,
               private formBuilder: FormBuilder,
               private productService: ProduitService,
               private rayonService: RayonService,
               private fournisseurService: FournisseurService,
+              private uploadService: UploadService,
               private stockService: StockService) { }
 
   ngOnInit(): void {
@@ -111,6 +120,13 @@ export class AddProductComponent implements OnInit {
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
     this.product.fournisseurs = this.fournisseurs.value;
+    if (this.selectedFile != null) {
+      const formdata = new FormData();
+      formdata.append('file', this.selectedFile);
+      console.log("bbb");
+      this.uploadService.upload(formdata).subscribe();
+      this.product.image = this.selectedFile.name;
+    }
     this.productService.add(this.product).subscribe(value =>this.dialogRef.close(value));
   }
 
@@ -119,5 +135,31 @@ export class AddProductComponent implements OnInit {
     this.product.detailProduit.categorieProduit = this.categorie.value;
     this.product.rayon = this.rayon.value;
     this.productService.update(this.product).subscribe(value => this.dialogRef.close(value));
+  }
+
+ /* onFileChange(event) {
+    const file: File = event.target.files[0];
+    console.log(file.name);
+    /!*console.log(files.value);
+    // @ts-ignore
+    this.fileU = files.target.item(0);
+    let   reader = new FileReader();
+    reader.onload = (event: any) => this.file = event.target.result;
+    reader.readAsDataURL(this.fileU);
+    this.loader = true;
+    console.log(this.fileU);*!/
+  }*/
+
+  onSelectFile(files) {
+
+    this.selectedFile = files[0] as File;
+    console.log(this.selectedFile);
+
+   /* const reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (event) => {
+      this.imgURL = reader.result;
+    };*/
   }
 }
