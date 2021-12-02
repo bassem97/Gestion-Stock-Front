@@ -17,12 +17,12 @@ export class ProduitService {
     return this.http.get<Produit[]>(this.url + "list");
   }
 
-  add(produit: Produit) {
-    return this.http.post(this.url + "add", produit);
+  add(produit: Produit): Observable<Produit> {
+    return this.http.post<Produit>(this.url + "add", produit);
   }
 
-  update(produit: Produit) {
-    return this.http.put(this.url + "update/" + produit.idProduit, produit);
+  update(produit: Produit): Observable<Produit> {
+    return this.http.put<Produit>(this.url + "update/" + produit.idProduit, produit);
   }
 
   delete(id: number) {
