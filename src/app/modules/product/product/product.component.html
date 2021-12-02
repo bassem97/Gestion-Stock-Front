@@ -30,7 +30,15 @@
             <i class="material-icons">category</i>
             {{product.detailProduit.categorieProduit}}
         </div>
-        <div class="col-6"  >
+        <div class="col-3">
+          <div class="float-right">
+            <button class=" btn-danger" (click)="reportProduct(product)" matTooltip="report this product">
+              <mat-icon class="ms-1">report_problem</mat-icon>
+            </button>
+            </div>
+
+        </div>
+        <div class="col-3"  >
           <div class="float-right">
              {{product.prixUnitaire}} DT
           </div>
