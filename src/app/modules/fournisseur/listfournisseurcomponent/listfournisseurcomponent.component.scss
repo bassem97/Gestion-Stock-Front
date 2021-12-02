@@ -1,1 +1,33 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+#img-result {
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  background: #1abc9c;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 3px 5px rgba(0,0,0,.3);
+  color: rgba(0,0,0,0);
+  transition: box-shadow .3s, margin .3s, background-image 1.5s;
+
+  &.no-image:before {
+    font-family: 'FontAwesome', serif;
+    content: "\f030";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    font-size: 48px;
+    opacity: .8;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0px 5px rgba(0,0,0,.4);
+  }
+}
+.modal-body{
+  height: 80vh;
+  overflow-y: auto;
+}

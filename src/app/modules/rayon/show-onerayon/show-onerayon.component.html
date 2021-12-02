@@ -1,0 +1,12 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title ">Rayon numéro:&ensp;{{rayon.idRayon}}</h4>
+  </div>
+  <img src="./assets/img/rayon.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title text-primary">libellè:&ensp;{{rayon.libelle}}</h5>
+    <p class="card-text">code:&ensp;{{rayon.code}}</p>
+    <button id="supprimer" class="btn btn-danger" style="margin: 10px" (click)="appliquer_supp()">Supprimer</button>
+      <button id="modifier" class="btn btn-info" (click)="appliquer_modif()" data-toggle="modal" data-target="#createmodel">Modifier</button>
+  </div>
+</div>

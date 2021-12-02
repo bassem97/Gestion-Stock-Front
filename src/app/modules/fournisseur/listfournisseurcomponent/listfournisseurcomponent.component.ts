@@ -50,29 +50,28 @@ this.fournisseurService.modifyfournisseur($event).subscribe( param =>{
   }
 
   supprimer_fournisseur($event: fournisseur) {
-    this.fournisseurService.deletefournisseur($event).subscribe(param =>{
-      this.listfournisseurs.forEach((p,n) =>{
-        if(p.idFournisseur==$event.idFournisseur)
-          this.listfournisseurs.splice(n,1)
-      })
-    });
-
-
+    if(confirm("Etes vous surs de vouloir supprimer ?")) {
+      this.fournisseurService.deletefournisseur($event).subscribe(param => {
+        this.listfournisseurs.forEach((p, n) => {
+          if (p.idFournisseur == $event.idFournisseur)
+            this.listfournisseurs.splice(n, 1)
+        })
+      });
+    }
   }
 
   search_fournisseur($event: string) {
     this.listmanipulation = this.listfournisseurs;
     this.listsearch=[];
+    this.showbyid = false;
     for (let entryid of Array.from(this.listmanipulation.entries())) {
         if (entryid[1].idFournisseur.toString().indexOf($event) != -1) {
           this.showbyid = true;
           this.isfound = entryid[1];
           this.find = 1;
         }
-        else {
+        else
           this.find = 0;
-          this.showbyid = false;
-        }
       if (this.find)
         this.listsearch.push(this.isfound);
     }
@@ -94,14 +93,17 @@ this.fournisseurService.modifyfournisseur($event).subscribe( param =>{
       this.listmanipulation = this.listfournisseurs;
   }
 
+  DynamicModel(){
+    this.showinput=false;
+    this.isshow=false;
+  }
+
   show() {
     this.showinput=!this.showinput;
-    this.isshow=false;
   }
 
   modifier_fournisseur_before($event: fournisseur) {
     this.isshow=!this.isshow;
-    this.showinput=false;
     this.input=$event;
     console.log($event);
   }

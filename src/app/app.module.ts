@@ -24,7 +24,7 @@ import {ModulesModule} from "./modules/modules.module";
     RouterModule,
     AppRoutingModule,
     SharedModule,
-    ModulesModule
+    ModulesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

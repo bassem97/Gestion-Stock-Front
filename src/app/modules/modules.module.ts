@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FournisseurModule} from "./fournisseur/fournisseur.module";
+import {RayonModule} from "./rayon/rayon.module";
 
 
 
@@ -9,7 +10,8 @@ import {FournisseurModule} from "./fournisseur/fournisseur.module";
   ],
   imports: [
     CommonModule,
-    FournisseurModule
+    FournisseurModule,
+    RayonModule
   ]
 })
 export class ModulesModule { }

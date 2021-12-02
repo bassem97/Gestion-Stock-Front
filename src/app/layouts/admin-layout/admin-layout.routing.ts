@@ -5,6 +5,7 @@ import { UserProfileComponent } from '../../modules/user-profile/user-profile.co
 import { TableListComponent } from '../../modules/table-list/table-list.component';
 import { UpgradeComponent } from '../../modules/upgrade/upgrade.component';
 import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
+import {ListrayonComponent} from "../../modules/rayon/listrayon/listrayon.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -53,6 +54,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'fournisseur',    component: ListfournisseurcomponentComponent },
+    { path: 'rayon',          component: ListrayonComponent },
     { path: 'upgrade',        component: UpgradeComponent }
 
 ];

@@ -5,40 +5,66 @@
           <div class="card-header card-header-danger">
             <h4 class="card-title ">Search</h4>
             <p>
-              <input   #term (keyup)="search_fournisseur(term.value)" type="text" class="form-control search-text-indent  searchbar-positioning" >
+              <input #term (keyup)="search_fournisseur(term.value)" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" type="text" class="form-control search-text-indent  searchbar-positioning" >
             </p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                <th style="display: flex; flex-wrap: nowrap">
-                  <tr>Id</tr>
-                  <tr style="margin-left: 20.4px">Code</tr>
-                  <tr style="margin-left: 42px">Libelle</tr>
-                  <tr style="margin-left: 85px">Supprimer</tr>
-                  <tr style="margin-left: 62px">Modifier</tr>
-                </th>
+                  <th>Id</th>
+                  <th>Code</th>
+                  <th>Libelle</th>
+                  <th>Avatar</th>
+                  <th>Supprimer</th>
+                  <th>Modifier</th>
                 </thead>
+                <ng-container *ngFor="let fournisseur of listmanipulation">
                 <tbody>
                 <tr>
-                <app-show-onefournisseur-component *ngFor="let object of listmanipulation" [fournisseur]="object"
-                                                   (supprimer_fournisseur)="supprimer_fournisseur($event)" (modifier_fournisseur_before)="modifier_fournisseur_before($event)" style="display: table" >
-                </app-show-onefournisseur-component>
+                    <td>{{fournisseur.idFournisseur}}</td>
+                    <td>{{fournisseur.code}}</td>
+                    <td>{{fournisseur.libelle}}</td>
+                  <td><img class="no-image" id="img-result" src="assets/img/{{fournisseur.avatar}}"></td>
+                    <td>
+                      <button id="supprimer" class="btn btn-danger" (click)="supprimer_fournisseur(fournisseur)">Supprimer</button>
+                    </td>
+                    <td >
+                      <button (click)="modifier_fournisseur_before(fournisseur)" type="button" class="btn btn-dark" href="" data-toggle="modal" data-target="#createmodel">Modifier</button>
+                    </td>
                 </tr>
                 </tbody>
+                </ng-container>
               </table>
             </div>
           </div>
         </div>
       </div>
-      <button id="ajouter" class="btn btn-info" (click)="show()">Ajouter</button>
-    <div *ngIf="isshow">
-      <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [fournisseur]="input" [name]="'Modifier'" (ajouter_modifier_fournisseur)="modifier_fournisseur_after($event)" ></app-add-edit-fournisseurcomponent>
-      <!--    <app-edit-invoice-component></app-edit-invoice-component>-->
-    </div>
-      <div *ngIf="showinput">
-        <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [name]="'Ajouter'" (ajouter_modifier_fournisseur)="ajouter_fournisseur($event)"></app-add-edit-fournisseurcomponent>
+    <br>
+    <button (click)="show()" type="button" class="btn btn-dark" href="" data-toggle="modal" data-target="#createmodel" >Ajouter Fournisseur</button>
+    <div class="modal fade" id="createmodel" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="my-custom-class-for-errors">
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel"><i class="ti-marker-alt m-r-10"></i>Fournisseur</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="DynamicModel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div *ngIf="isshow">
+              <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [fournisseur]="input" [name]="'Modifier'" (ajouter_modifier_fournisseur)="modifier_fournisseur_after($event)" ></app-add-edit-fournisseurcomponent>
+            </div>
+            <div *ngIf="showinput">
+              <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [name]="'Ajouter'" (ajouter_modifier_fournisseur)="ajouter_fournisseur($event)"></app-add-edit-fournisseurcomponent>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
