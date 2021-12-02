@@ -61,6 +61,6 @@
       <h2> Thank you for submitting your problem !!</h2>
       <h2> An admin will approve it as soon as possible</h2>
     </div>
-    <button mat-raised-button  color="primary" matStepperNext>OK</button>
+    <button mat-raised-button  color="primary" (click)="okClick()" routerLink="reclamation" >OK</button>
   </mat-step>
 </mat-horizontal-stepper>

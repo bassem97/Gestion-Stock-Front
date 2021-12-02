@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReclamationService} from "../../../core/services/reclamation/reclamation.service";
 import {Reclamation} from "../../../core/models/reclamation";
 import {Client} from "../../../core/models/client";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatStepper} from "@angular/material/stepper";
 
 @Component({
@@ -25,6 +25,7 @@ export class AddReclamationComponent implements OnInit  {
                private reclamationService : ReclamationService,
                private formBuilder: FormBuilder,
                @Inject(MAT_DIALOG_DATA) public data: Array<any>,
+               public dialogRef: MatDialog
 
   ) { }
 
@@ -97,4 +98,9 @@ export class AddReclamationComponent implements OnInit  {
   //     this.stepper.selectedIndex = 1
   //
   // }
+  okClick() {
+    this.dialogRef.closeAll()
+
+
+  }
 }

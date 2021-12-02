@@ -12,6 +12,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -20,18 +21,19 @@ import {MatIconModule} from "@angular/material/icon";
     ListReclamationsComponent,
     AddReclamationComponent
   ],
-  imports: [
-    CommonModule,
-    MatDividerModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        MatDividerModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatIconModule,
+        RouterModule
+    ]
 })
 export class ReclamationModule { }

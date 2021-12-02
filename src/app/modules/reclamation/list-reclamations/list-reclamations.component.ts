@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Reclamation} from "../../../core/models/reclamation";
 import {ReclamationService} from "../../../core/services/reclamation/reclamation.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,6 +15,8 @@ import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socke
 })
 export class ListReclamationsComponent implements OnInit {
   reclamations: Reclamation[];
+  @ViewChild('target') private myScrollContainer: ElementRef;
+
 
   constructor(private reclamationService : ReclamationService,
               public dialog: MatDialog,
