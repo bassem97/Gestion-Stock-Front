@@ -20,6 +20,8 @@ export class ProductComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(!this.product.image)
+      this.product.image = "cover.jpeg";
   }
 
   openDeleteEmpDialog(product: Produit) {
