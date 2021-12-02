@@ -7,6 +7,7 @@ import { UpgradeComponent } from '../../modules/upgrade/upgrade.component';
 import {ProductComponent} from "../../modules/product/product/product.component";
 import {ListProductComponent} from "../../modules/product/list-product/list-product.component";
 import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
+import {ListComponent} from "../../modules/factures/list/list.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -57,6 +58,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'product',        component: ListProductComponent },
     { path: 'fournisseur',    component: ListfournisseurcomponentComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'factures',       component: ListComponent },
+    { path: 'upgrade',        component: UpgradeComponent },
 
 ];

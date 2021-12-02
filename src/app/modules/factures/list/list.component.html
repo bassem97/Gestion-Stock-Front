@@ -1,0 +1,38 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn btn-danger" (click)="toggleForm()">Ajouter</button>
+    </div>
+    <div class="card">
+      <div class="card-header card-header-warning">
+      <h4 class="card-title">Liste des factures</h4>
+    </div>
+      <div class="card-body table-responsive">
+      <table class="table table-hover">
+        <thead class="text-warning">
+        <th>ID</th>
+        <th>Date</th>
+        <th>Montant</th>
+        <th>Remise</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let facture of factures">
+          <td>{{facture.idFacture}}</td>
+          <td>{{facture.dateFacture}}</td>
+          <td>{{facture.montantFacture}}$</td>
+          <td>{{facture.montantRemise}}$</td>
+          <td>
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">edit</mat-icon>
+          </td>
+          <td>
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">delete_outline</mat-icon>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
