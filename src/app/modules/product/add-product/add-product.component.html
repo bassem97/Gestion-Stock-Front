@@ -1,10 +1,10 @@
-<img *ngIf="file != null && !loader" [src]="file" style="height: 100%; width: 100%; " alt="">
-<div style="width: 96%; height: 0;">
-  <input type="file" hidden accept="image/*" (change)="onSelectFile(fileInput.files)" name="file" style="margin-top: 30px; font-weight: normal;" #fileInput>
-  <button mat-icon-button color="primary" (click)="fileInput.click(); " style=" margin-top: -35px; background-color: #F0F0F0; margin-left: -55px; position: absolute"><mat-icon >camera_alt</mat-icon></button>
-</div>
 <div class="main-content ">
   <div class="container-fluid">
+    <img *ngIf="file != null && !loader" [src]="file" style="height: 100%; width: 100%; " alt="">
+    <div style="width: 96%; height: 0;">
+      <input type="file" hidden accept="image/*" (change)="onSelectFile(fileInput.files)" name="file" style="margin-top: 30px; font-weight: normal;" #fileInput>
+      <button mat-icon-button color="primary" (click)="fileInput.click(); " style=" margin-top: -35px; background-color: #F0F0F0; margin-left: -55px; position: absolute"><mat-icon >camera_alt</mat-icon></button>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card" style="height: 100%">
