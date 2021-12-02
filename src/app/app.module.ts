@@ -16,6 +16,7 @@ import {ProductModule} from "./modules/product/product.module";
 import {MatIconModule} from "@angular/material/icon";
 import { ListStockComponent } from './modules/stock/list-stock/list-stock.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ModulesModule,
     MatCardModule,
     MatButtonModule,
-    ProductModule,
     MatIconModule,
     MatTooltipModule
   ],

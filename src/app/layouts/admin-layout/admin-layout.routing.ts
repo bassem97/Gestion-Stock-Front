@@ -8,6 +8,7 @@ import {ProductComponent} from "../../modules/product/product/product.component"
 import {ListProductComponent} from "../../modules/product/list-product/list-product.component";
 import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
 import {ListStockComponent} from "../../modules/stock/list-stock/list-stock.component";
+import {ListReclamationsComponent} from "../../modules/reclamation/list-reclamations/list-reclamations.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -59,7 +60,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'product',        component: ListProductComponent },
     { path: 'fournisseur',    component: ListfournisseurcomponentComponent },
     { path: 'upgrade',        component: UpgradeComponent },
-    { path: 'stock',        component: ListStockComponent },
+    { path: 'stock',          component: ListStockComponent },
+    { path: 'reclamation',    component: ListReclamationsComponent },
 
 
 ];

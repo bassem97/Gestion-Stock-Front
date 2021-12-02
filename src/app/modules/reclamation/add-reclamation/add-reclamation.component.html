@@ -1,0 +1,66 @@
+<mat-horizontal-stepper linear #stepper >
+  <mat-step [stepControl]="firstStepControl">
+    <form [formGroup]="firstStepControl">
+      <ng-template matStepLabel>Choose the product</ng-template>
+      <div class="mt-5">
+        <mat-form-field class="example-full-width">
+          <mat-label>Product</mat-label>
+          <mat-select required  formControlName="products" [(ngModel)]="selectedProduct.idProduit" >
+            <mat-option *ngFor="let p of produits" [value]="p.idProduit">
+              {{p.code}} - {{p.libelle}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!products.valid && products.touched">
+            {{ getErrorProducts() }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button mat-raised-button color="primary" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="reclamationForm">
+    <form [formGroup]="reclamationForm">
+        <ng-template matStepLabel>Describe the problem</ng-template>
+        <div class="col-md-6 mb-3">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              formControlName="subject"
+              placeholder="subject"
+              required>
+            <mat-icon matSuffix>subject</mat-icon>
+            <mat-error *ngIf="!subject.valid && subject.touched">
+              {{ getErrorSubject() }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-10">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Describe your problem</mat-label>
+            <textarea  matInput
+                       formControlName="body"
+                       placeholder="body"
+                       required>
+            </textarea>
+            <mat-icon matSuffix>accessibility_new</mat-icon>
+          </mat-form-field>
+          <mat-error *ngIf="!body.valid && body.touched">
+            {{ getErrorBody() }}
+          </mat-error>
+        </div>
+      </form>
+    <div>
+      <button mat-raised-button (click)="submitReclamation()" [disabled]="!reclamationForm.valid" color="primary" matStepperNext>Submit</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>finishing</ng-template>
+    <div class="mt-5">
+      <h2> Thank you for submitting your problem !!</h2>
+      <h2> An admin will approve it as soon as possible</h2>
+    </div>
+    <button mat-raised-button  color="primary" matStepperNext>OK</button>
+  </mat-step>
+</mat-horizontal-stepper>

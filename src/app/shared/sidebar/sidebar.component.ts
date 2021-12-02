@@ -15,6 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/product', title: 'Products',  icon: 'unarchive', class: '' },
     { path: '/stock', title: 'Stocks', icon : 'unarchive', class:''},
     { path: '/fournisseur', title: 'Fournisseurs',  icon: 'person', class: '' },
+    { path: '/reclamation', title: 'Mes reclamation',  icon: 'report_problem', class: '' },
 ];
 
 @Component({

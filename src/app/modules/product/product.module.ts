@@ -12,6 +12,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -27,16 +28,17 @@ import {MatDialogModule} from "@angular/material/dialog";
     ProductComponent
   ],
   imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        MatTooltipModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatDialogModule
-    ]
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
+  ]
 })
 export class ProductModule { }
