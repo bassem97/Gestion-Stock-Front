@@ -9,6 +9,7 @@ import {ListProductComponent} from "../../modules/product/list-product/list-prod
 import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
 import {ListStockComponent} from "../../modules/stock/list-stock/list-stock.component";
 import {ListReclamationsComponent} from "../../modules/reclamation/list-reclamations/list-reclamations.component";
+import {ListComponent} from "../../modules/factures/list/list.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -62,6 +63,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'stock',          component: ListStockComponent },
     { path: 'reclamation',    component: ListReclamationsComponent },
-
+    { path: 'factures',       component: ListComponent },
 
 ];
