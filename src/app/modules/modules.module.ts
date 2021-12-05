@@ -6,13 +6,17 @@ import {ProductModule} from "./product/product.module";
 import {ReclamationModule} from "./reclamation/reclamation.module";
 import { FacturesModule } from './factures/factures.module';
 
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoginRegistrationModule } from './login-registration/login-registration.module';
 
 @NgModule({
   declarations: [
   ],
   imports: [
     CommonModule,
+    FournisseurModule,
+    ReactiveFormsModule,
+    LoginRegistrationModule,
     FournisseurModule,
     FacturesModule,
     StockModule,

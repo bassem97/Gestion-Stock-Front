@@ -1,8 +1,10 @@
-export class Client{
-  idClient : number;
+export class User {
+  nom: string;
+  prenom: string;
+  email: string;
+  password: string;
+  dateNaissance: Date;
+  categorieClient: string;
+  proffession: string;
 
-
-  constructor() {
-    this.idClient = 1;
-  }
 }

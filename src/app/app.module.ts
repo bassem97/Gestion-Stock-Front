@@ -18,6 +18,7 @@ import { ListStockComponent } from './modules/stock/list-stock/list-stock.compon
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DateAdapter} from "@angular/material/core";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {DateAdapter} from "@angular/material/core";
   ],
   imports: [
     BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

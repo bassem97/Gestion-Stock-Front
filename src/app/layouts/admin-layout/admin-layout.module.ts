@@ -26,6 +26,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    
   ],
   declarations: [
     DashboardComponent,
