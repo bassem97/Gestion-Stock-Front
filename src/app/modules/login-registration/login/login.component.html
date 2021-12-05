@@ -7,7 +7,7 @@
           <form [formGroup]="signUpForm">
             <mat-form-field>
               <input
-                [(ngModel)]="client.nom"
+                [(ngModel)]="user.firstName"
                 formControlName="nom"
                 matInput
                 placeholder="nom"
@@ -20,7 +20,7 @@
             </mat-form-field>
             <mat-form-field>
               <input
-                [(ngModel)]="client.prenom"
+                [(ngModel)]="user.lastName"
                 formControlName="prenom"
                 matInput
                 name="prenom"
@@ -34,7 +34,7 @@
             </mat-form-field>
             <mat-form-field>
               <input
-                [(ngModel)]="client.email"
+                [(ngModel)]="user.email"
                 formControlName="email"
                 matInput
                 name="email"
@@ -49,7 +49,7 @@
             <mat-form-field>
               <!--              <mat-pass-toggle-visibility #toggle  matSuffix></mat-pass-toggle-visibility>-->
               <input
-                [(ngModel)]="client.password"
+                [(ngModel)]="user.password"
                 formControlName="password"
                 matInput
                 placeholder="Password"
@@ -104,8 +104,8 @@
                 matInput
                 placeholder="Username"
                 required
-                [(ngModel)]="loginModel.username"
-                formControlName="username"
+                [(ngModel)]="loginModel.email"
+                formControlName="email"
               />
               <!--              <mat-error *ngIf="loginForm.get('username').hasError('required')">UserName is required</mat-error>-->
               <mat-icon matSuffix>email</mat-icon>
@@ -136,7 +136,7 @@
               color="primary"
               class="login-button"
               type="submit"
-              (click)="onSubmit()"
+              (click)="submit()"
             >
               Log In
             </button>

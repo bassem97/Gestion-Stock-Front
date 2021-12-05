@@ -5,13 +5,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Client } from '../../../core/models/client';
+import { User } from '../../../core/models/user';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteDialogComponent } from '../../../shared/dialogs/delete-dialog/delete-dialog.component';
 import { Login } from '../../../core/models/login';
 import { AuthenticationService } from '../../../core/services/auth/authService';
-import { ClientService } from '../../../core/services/client/client.service';
+import { UserService } from '../../../core/services/user/user.service';
+import {ErrorDialogComponent} from "../../../shared/dialogs/error-dialog/error-dialog.component";
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -35,11 +36,11 @@ export function MustMatch(controlName: string, matchingControlName: string) {
 })
 export class LoginComponent implements OnInit {
   signUpForm: FormGroup;
-  client: Client;
+  user: User;
   loginForm: FormGroup;
-  loginModel: Login = { password: '', username: '' };
+  loginModel: Login;
 
-  DeleteDialogComponent: MatDialogRef<DeleteDialogComponent>;
+  errorDialogComponent: MatDialogRef<ErrorDialogComponent>;
   @Output() closeAll = new EventEmitter<boolean>();
 
   constructor(
@@ -47,11 +48,12 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private authService: AuthenticationService,
-    private clientS: ClientService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.client = new Client();
+    this.loginModel = {email: '', password: ''};
+    this.user = new User();
     this.createSignUpForm();
     this.creatSignInForm();
   }
@@ -64,7 +66,7 @@ export class LoginComponent implements OnInit {
     this.signUpForm = this.formBuilder.group(
       {
         nom: [
-          this.client.nom,
+          this.user.firstName,
           [
             Validators.required,
             Validators.pattern(name),
@@ -72,7 +74,7 @@ export class LoginComponent implements OnInit {
           ],
         ],
         prenom: [
-          this.client.prenom,
+          this.user.lastName,
           [
             Validators.required,
             Validators.pattern(name),
@@ -80,11 +82,11 @@ export class LoginComponent implements OnInit {
           ],
         ],
         email: [
-          this.client.email,
+          this.user.email,
           [Validators.required, Validators.pattern(emailregex)],
         ],
         password: [
-          this.client.password,
+          this.user.password,
           [Validators.required, this.checkPassword],
         ],
         repassword: ['', Validators.required],
@@ -152,14 +154,14 @@ export class LoginComponent implements OnInit {
 
   creatSignInForm() {
     this.loginForm = this.formBuilder.group({
-      username: [this.loginModel.username, [Validators.required]],
+      email: [this.loginModel.email, [Validators.required]],
       password: [this.loginModel.password, [Validators.required]],
     });
   }
 
   onClickSignUp() {
     console.log('aa');
-    this.authService.register(this.client).subscribe(
+    this.authService.register(this.user).subscribe(
       (data) => {
         this.router.navigate(['/login']);
       },
@@ -169,22 +171,23 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    this.authService.authenticate(this.loginModel).subscribe((res) => {
-      if (res) {
+  submit() {
+    this.authService.authenticate(this.loginModel).subscribe(res => {
+      // @ts-ignore
+      localStorage.token = res.token;
+      this.userService.findUserWithToken().subscribe( ress => {
         // @ts-ignore
-        localStorage['token'] = res.token;
-        
-          
-            this.router.navigate(['/dashboard']);
-          }
-        });
-      } else if (res === false) {
-        this.DeleteDialogComponent = this.dialog.open(DeleteDialogComponent, {
-          width: '350px',
-          data: 'Username/password Invalid/does not exist ! ',
-        });
-      }
+        localStorage.email = ress.email;
+        // @ts-ignore
+        setTimeout(() => {
+          this.router.navigateByUrl('/dashboard').then(() => window.location.reload());
+        }, 100);
+      }, error => console.log(error));
+    }, error => {
+      this.errorDialogComponent = this.dialog.open(ErrorDialogComponent, {
+        width: '350px',
+        data: 'Username/password Invalid/does not exist ! ',
+      });
     });
   }
 }

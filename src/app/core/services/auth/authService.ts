@@ -7,39 +7,22 @@ import {
 } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Client } from '../../models/client';
+import { User } from '../../models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../../models/login';
+import {environment} from "../../../../environments/environment";
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  url = 'http://localhost:8081/';
+  url =  environment.url + 'auth/';
   jwt: string;
   email: string;
-  headers: HttpHeaders = new HttpHeaders();
   roles: Array<string>;
   constructor(private http: HttpClient) {}
 
   authenticate(login: Login) {
-    // this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    // this.headers.append('Access-Control-Allow-Methods', 'GET');
-    // this.headers.append('Access-Control-Allow-Origin', '*');
-    // this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    //
-    // let body = new URLSearchParams();
-    //body.set('user', login.username);
-    //body.set('password', login.password);
-
-    const body = new HttpParams()
-      .set('user', login.username)
-      .set('password', login.password);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    headers.append('response-type', 'text');
-
-    return this.http.post(this.url + 'authenticate', login);
+    return this.http.post(this.url + 'login/' , login);
   }
 
   getToken() {
@@ -47,16 +30,14 @@ export class AuthenticationService {
   }
 
   saveToken(jwt: string) {
-    localStorage.setItem('token', jwt);
-    this.jwt = jwt;
-    this.parseJWT();
+    localStorage.setItem("token",jwt) ;
   }
 
   private parseJWT() {
     const jwtHelper = new JwtHelperService();
     const jwtObject = jwtHelper.decodeToken(this.jwt);
-    this.email = jwtObject.obj;
-    this.roles = jwtObject.roles;
+    // this.email = jwtObject.obj;
+    // this.roles = jwtObject.roles;
   }
   isAdmin() {
     return this.roles.indexOf('ADMIN') >= 0;
@@ -76,11 +57,11 @@ export class AuthenticationService {
 
   logOut(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('email');
     window.location.reload();
   }
 
-  register = (client: Client) => {
-    return this.http.post(this.url + 'register', client);
+  register = (user: User) => {
+    return this.http.post(this.url + 'register', user);
   };
 }

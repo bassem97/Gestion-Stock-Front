@@ -13,14 +13,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    console.log( 'loula== ', req);
 
     let authReq = req;
     const token = this.auth.getToken() ;
 
     if (token != null) { authReq = req.clone({ headers: req.headers.set('Authorization', token) }); }
-    console.log('thenya== ', authReq );
-    console.log('token ==', token);
     return next.handle(authReq);
   }
 

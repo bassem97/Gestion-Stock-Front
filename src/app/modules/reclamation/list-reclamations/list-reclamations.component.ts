@@ -3,7 +3,7 @@ import {Reclamation} from "../../../core/models/reclamation";
 import {ReclamationService} from "../../../core/services/reclamation/reclamation.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Produit} from "../../../core/models/produit";
-import {Client} from "../../../core/models/client";
+import {User} from "../../../core/models/user";
 import {AddProductComponent} from "../../product/add-product/add-product.component";
 import {AddReclamationComponent} from "../add-reclamation/add-reclamation.component";
 import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socket-api.service";

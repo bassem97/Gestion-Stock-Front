@@ -8,6 +8,7 @@ import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.com
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { DeleteDialogStockComponent } from './dialogs/delete-dialog-stock/delete-dialog-stock.component';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
 
 
 
@@ -18,6 +19,7 @@ import { DeleteDialogStockComponent } from './dialogs/delete-dialog-stock/delete
     SidebarComponent,
     DeleteDialogComponent,
     DeleteDialogStockComponent,
+    ErrorDialogComponent,
   ],
   exports: [
     SidebarComponent,

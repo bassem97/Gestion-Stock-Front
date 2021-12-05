@@ -1,19 +1,19 @@
 import {Produit} from "./produit";
-import {Client} from "./client";
+import {User} from "./user";
 
 export class Reclamation{
   idReclamation : number;
   subject : string;
   body : string;
   produit : Produit;
-  client : Client;
+  user : User;
   etat : boolean;
 
 
-  constructor(subject: string, body: string, produit: Produit, client: Client) {
+  constructor(subject: string, body: string, produit: Produit, user: User) {
     this.subject = subject;
     this.body = body;
     this.produit = produit;
-    this.client = client;
+    this.user = user;
   }
 }

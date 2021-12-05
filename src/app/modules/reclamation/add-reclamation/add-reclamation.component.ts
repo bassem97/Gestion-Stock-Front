@@ -4,7 +4,7 @@ import {Produit} from "../../../core/models/produit";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReclamationService} from "../../../core/services/reclamation/reclamation.service";
 import {Reclamation} from "../../../core/models/reclamation";
-import {Client} from "../../../core/models/client";
+import {User} from "../../../core/models/user";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatStepper} from "@angular/material/stepper";
 
@@ -87,7 +87,7 @@ export class AddReclamationComponent implements OnInit  {
 
   submitReclamation() {
 
-    const reclamation : Reclamation = new Reclamation(this.subject.value,this.body.value,<Produit>this.produits.find(product => product.idProduit == this.products.value),new Client())
+    const reclamation : Reclamation = new Reclamation(this.subject.value,this.body.value,<Produit>this.produits.find(product => product.idProduit == this.products.value),new User())
     this.reclamationService.add(reclamation).subscribe(res => {
       console.log(res);
     })

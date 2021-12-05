@@ -3,31 +3,32 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Client } from 'stompjs';
+import {User} from "../../models/user";
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClientService {
-  private baseurl = environment.url + '/client/';
+export class UserService {
+  private baseurl = environment.url + 'user/';
   private headers: HttpHeaders;
   //sender: Client;
 
   constructor(private http: HttpClient) {
     // @ts-ignore
-    this.findUserWithToken().subscribe((client) => (this.sender = client));
+    this.findUserWithToken().subscribe((user) => (this.sender = user));
   }
 
   public findUserWithToken() {
     this.headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage['token'],
     });
-    return this.http.get(environment.url + 'authenticate', {
+    return this.http.get(this.baseurl + 'findByToken', {
       headers: this.headers,
     });
   }
 
-  add(client: Client) {
-    return this.http.post(this.baseurl + 'add', client);
+  add(user: User) {
+    return this.http.post(this.baseurl + 'add', user);
   }
 
   list(): Observable<any> {
@@ -41,9 +42,9 @@ export class ClientService {
   //   return this.http.delete(this.baseurl + 'delete/' + id + '/' + this.sender.userId);
   // }
 
-  // modify(id, client, sender) {
+  // modify(id, user, sender) {
   //   // this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.token});
-  //   return this.http.put(this.baseurl + 'update/' + id + '/' + sender, client);
+  //   return this.http.put(this.baseurl + 'update/' + id + '/' + sender, user);
   // }
 
   findById(id: string): Observable<Client> {
@@ -60,9 +61,9 @@ export class ClientService {
   //   return this.http.get(this.baseurl + 'userByEmail/' + email);
   // }
 
-  // changePassword(changePassword: any, client: { cin: string; }) {
+  // changePassword(changePassword: any, user: { cin: string; }) {
   //   this.headers = new HttpHeaders({Authorization: 'Bearer ' + localStorage.token});
-  //   return this.http.post(this.baseurl + 'changePassword/' + client.cin, changePassword, {headers: this.headers});
+  //   return this.http.post(this.baseurl + 'changePassword/' + user.cin, changePassword, {headers: this.headers});
   // }
 
   // changeRole(id, role) {
