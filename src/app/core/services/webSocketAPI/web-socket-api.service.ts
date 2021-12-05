@@ -12,7 +12,7 @@ export class WebSocketAPIService {
   private gestionStockComponent = new Subject<any>();
   // Observable string streams
   webSocketNotifier = this.gestionStockComponent.asObservable();
-  webSocketEndPoint = environment.url+ '/ws';
+  webSocketEndPoint = environment.url+ 'ws';
   topic = '/topic/greetings';
   stompClient: any;
   constructor() {

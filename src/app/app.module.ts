@@ -17,6 +17,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { ListStockComponent } from './modules/stock/list-stock/list-stock.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {DateAdapter} from "@angular/material/core";
 
 @NgModule({
   declarations: [

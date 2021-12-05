@@ -2,6 +2,7 @@ import {Stock} from "./stock";
 import {Rayon} from "./rayon";
 import {DetailProduit} from "./detailProduit";
 import {fournisseur} from "./fournisseur";
+import { Reclamation } from "./reclamation";
 
 export class Produit {
   idProduit:number;
@@ -13,6 +14,7 @@ export class Produit {
   rayon: Rayon;
   detailProduit: DetailProduit;
   fournisseurs: fournisseur[];
+  reclamations: Reclamation[];
 
   constructor() {
     this.detailProduit = new DetailProduit();
