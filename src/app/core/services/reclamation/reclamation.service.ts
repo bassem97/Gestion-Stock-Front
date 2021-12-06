@@ -14,22 +14,22 @@ export class ReclamationService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Reclamation[]> {
-    return this.http.get<Reclamation[]>(this.url + "list");
+    return this.http.get<Reclamation[]>(this.url + "list",{headers : environment.headers});
   }
 
   add(reclamation: Reclamation) {
-    return this.http.post(this.url + "add", reclamation);
+    return this.http.post(this.url + "add", reclamation,{headers : environment.headers});
   }
 
   update(reclamation: Reclamation) {
-    return this.http.put(this.url + "update/" + reclamation.idReclamation, reclamation);
+    return this.http.put(this.url + "update/" + reclamation.idReclamation, reclamation,{headers : environment.headers});
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + "delete/" + id);
+    return this.http.delete(this.url + "delete/" + id,{headers : environment.headers});
   }
 
   findById(id: number): Observable<Reclamation> {
-    return this.http.get<Reclamation>(this.url + "findById/" + id);
+    return this.http.get<Reclamation>(this.url + "findById/" + id,{headers : environment.headers});
   }
 }
