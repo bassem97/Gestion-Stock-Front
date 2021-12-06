@@ -11,18 +11,19 @@ import {User} from "../../models/user";
 export class UserService {
   private baseurl = environment.url + 'user/';
   private headers: HttpHeaders;
-  //sender: Client;
+  activeUser: User;
 
   constructor(private http: HttpClient) {
     // @ts-ignore
-    this.findUserWithToken().subscribe((user) => (this.sender = user));
+    this.findUserWithToken().subscribe((user) => (this.activeUser = user));
   }
+
 
   public findUserWithToken() {
     this.headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage['token'],
     });
-    return this.http.get(this.baseurl + 'findByToken', {
+    return this.http.get<User>(this.baseurl + 'findByToken', {
       headers: this.headers,
     });
   }

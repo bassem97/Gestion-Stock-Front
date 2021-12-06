@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import {AuthenticationService} from "../../core/services/auth/authService";
+import {User} from "../../core/models/user";
+import {UserService} from "../../core/services/user/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +17,18 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+     activeUser: User;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+
+    constructor(location: Location,
+                private element: ElementRef,
+                private router: Router,
+                private authService: AuthenticationService,
+                private userService: UserService
+    ) {
       this.location = location;
-          this.sidebarVisible = false;
+      this.sidebarVisible = false;
+      userService.findUserWithToken().subscribe(user =>  this.activeUser = user);
     }
 
     ngOnInit(){
@@ -110,7 +121,6 @@ export class NavbarComponent implements OnInit {
 
         }
     };
-
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
@@ -124,4 +134,8 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+    logOut() {
+    this.authService.logOut();
+  }
 }

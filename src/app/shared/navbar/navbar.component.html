@@ -28,6 +28,17 @@
 <!--                        </p>-->
 <!--                    </a>-->
 <!--                </li>-->
+              <li class="nav-item">
+
+                                    <a class="nav-link" href="javascript:void(0)">
+                                        <i class="material-icons">person</i>
+                                        <p>
+                                            <span class="d-lg-none d-md-block">Account</span>
+                                        </p>
+                                    <strong> {{activeUser.email}}</strong>
+
+                                    </a>
+              </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img width="50" height="51" class="rounded-circle"    src="../../assets/img/cover.jpeg"  alt="">
@@ -44,17 +55,10 @@
 
                   <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item "   routerLink="user-profile">Edit profile</a>
-                        <a class="dropdown-item"  routerLink="loginComp"> <i class="material-icons">logout</i>Logout </a>
+                        <a class="dropdown-item"  routerLink="loginComp" (click)="logOut()"> <i class="material-icons">logout</i>Logout </a>
                   </div>
                 </li>
-                <li class="nav-item">
-<!--                    <a class="nav-link" href="javascript:void(0)">-->
-<!--                        <i class="material-icons">person</i>-->
-<!--                        <p>-->
-<!--                            <span class="d-lg-none d-md-block">Account</span>-->
-<!--                        </p>-->
-<!--                    </a>-->
-                </li>
+
             </ul>
         </div>
     </div>

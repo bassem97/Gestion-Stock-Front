@@ -6,20 +6,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ProductComponent } from './modules/product/product/product.component';
 import { LoginComponent } from './modules/login-registration/login/login.component';
+import {AuthGuardService as AuthGuard} from "./core/services/auth/auth-guard.service";
+
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
   },
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -30,6 +30,12 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard]
+  },
+
 
   /*,
 

@@ -19,7 +19,7 @@ export class AuthenticationService {
   jwt: string;
   email: string;
   roles: Array<string>;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   authenticate(login: Login) {
     return this.http.post(this.url + 'login/' , login);
@@ -59,6 +59,8 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     window.location.reload();
+
+    // this.router.navigateByUrl('/login');
   }
 
   register = (user: User) => {
