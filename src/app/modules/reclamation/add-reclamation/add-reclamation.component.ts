@@ -7,6 +7,8 @@ import {Reclamation} from "../../../core/models/reclamation";
 import {User} from "../../../core/models/user";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatStepper} from "@angular/material/stepper";
+import {AuthenticationService} from "../../../core/services/auth/authService";
+import {UserService} from "../../../core/services/user/user.service";
 
 @Component({
   selector: 'app-add-reclamation',
@@ -20,16 +22,22 @@ export class AddReclamationComponent implements OnInit  {
   @ViewChild('stepper') stepper: MatStepper;
   reclamationForm: FormGroup;
   selectedProduct : Produit = new Produit();
+  activeUser : User;
+
 
   constructor( private productService: ProduitService,
                private reclamationService : ReclamationService,
                private formBuilder: FormBuilder,
                @Inject(MAT_DIALOG_DATA) public data: Array<any>,
-               public dialogRef: MatDialog
+               public dialogRef: MatDialog,
+               private userService : UserService
+
 
   ) { }
 
   ngOnInit(): void {
+    this.userService.findUserWithToken().subscribe((user) => (this.activeUser = user));
+
     if(this.data!= null)
     {
       this.selectedProduct = this.data[0];
@@ -87,7 +95,7 @@ export class AddReclamationComponent implements OnInit  {
 
   submitReclamation() {
 
-    const reclamation : Reclamation = new Reclamation(this.subject.value,this.body.value,<Produit>this.produits.find(product => product.idProduit == this.products.value),new User())
+    const reclamation : Reclamation = new Reclamation(this.subject.value,this.body.value,<Produit>this.produits.find(product => product.idProduit == this.products.value),this.activeUser)
     this.reclamationService.add(reclamation).subscribe(res => {
       console.log(res);
     })

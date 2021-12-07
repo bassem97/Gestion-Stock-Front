@@ -16,7 +16,7 @@ export class ListProductComponent implements OnInit {
   showFormTemplate: boolean;
   constructor(private produitService: ProduitService,
               public dialog: MatDialog,
-              private webSocketAPI: WebSocketAPIService,
+              private webSocketAPI: WebSocketAPIService
               ) { }
 
 
