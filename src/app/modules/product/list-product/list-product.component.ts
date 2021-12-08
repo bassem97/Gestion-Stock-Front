@@ -4,7 +4,6 @@ import {ProduitService} from "../../../core/services/produit/produit.service";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {MatDialog} from "@angular/material/dialog";
 import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socket-api.service";
-import {WebSocketMessage} from "../../../core/models/WebSocketMessage";
 
 @Component({
   selector: 'app-list-product',
@@ -24,7 +23,7 @@ export class ListProductComponent implements OnInit {
   ngOnInit(): void {
     this.refreshProducts();
     this.webSocketAPI._connect();
-    this.webSocketAPI.remoteMonitoringComp.subscribe(res => {
+    this.webSocketAPI.webSocketNotifier.subscribe(res => {
       setTimeout(() => {
         this.refreshProducts();
       }, 500);
@@ -53,7 +52,4 @@ export class ListProductComponent implements OnInit {
     this.produitService.delete(id).subscribe();
   }
 
-  // refreshListAfterDelete(id: number) {
-  //   this.products = this.products.filter(value => value.idProduit != id);
-  // }
 }

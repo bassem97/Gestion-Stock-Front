@@ -3,6 +3,7 @@ import {Produit} from "../../../core/models/produit";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
 import {AddProductComponent} from "../add-product/add-product.component";
+import {AddReclamationComponent} from "../../reclamation/add-reclamation/add-reclamation.component";
 
 @Component({
   selector: 'app-produit',
@@ -19,6 +20,8 @@ export class ProductComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(!this.product.image)
+      this.product.image = "cover.jpeg";
   }
 
   openDeleteEmpDialog(product: Produit) {
@@ -39,5 +42,14 @@ export class ProductComponent implements OnInit {
       height: '76%',
       data: [product, 'produit']
     });
+  }
+
+  reportProduct(product: Produit) {
+    const dialogRef = this.dialog.open(AddReclamationComponent, {
+      width: '60%',
+      height: '60%',
+      data : [product]
+    });
+    dialogRef.afterClosed().subscribe();
   }
 }

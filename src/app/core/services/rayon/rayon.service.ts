@@ -14,6 +14,6 @@ export class RayonService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Rayon[]> {
-    return this.http.get<Rayon[]>(this.url + "list");
+    return this.http.get<Rayon[]>(this.url + "list",{headers : environment.headers});
   }
 }

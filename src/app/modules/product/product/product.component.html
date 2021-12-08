@@ -1,7 +1,7 @@
     <div class="card card-chart">
       <div class="card-header">
 <!--        <div class="ct-chart" id="dailySalesChart"></div>-->
-        <img class="img-fluid"  src="./assets/img/cover.jpeg" alt="Image" style="border-radius: 10px">
+        <img class="img-fluid"  src="./assets/img/{{product.image}}" alt="Image" style="border-radius: 10px; height: 250px">
       </div>
       <div class="card-body">
         <div class="row">
@@ -30,7 +30,15 @@
             <i class="material-icons">category</i>
             {{product.detailProduit.categorieProduit}}
         </div>
-        <div class="col-6"  >
+        <div class="col-3">
+          <div class="float-right">
+            <button class=" btn-danger" (click)="reportProduct(product)" matTooltip="report this product">
+              <mat-icon class="ms-1">report_problem</mat-icon>
+            </button>
+            </div>
+
+        </div>
+        <div class="col-3"  >
           <div class="float-right">
              {{product.prixUnitaire}} DT
           </div>

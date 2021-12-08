@@ -9,10 +9,10 @@ import {environment} from "../../../../environments/environment";
 })
 
 export class WebSocketAPIService {
-  private remoteMonitoringCompSource = new Subject<any>();
+  private gestionStockComponent = new Subject<any>();
   // Observable string streams
-  remoteMonitoringComp = this.remoteMonitoringCompSource.asObservable();
-  webSocketEndPoint = environment.url+ '/ws';
+  webSocketNotifier = this.gestionStockComponent.asObservable();
+  webSocketEndPoint = environment.url+ 'ws';
   topic = '/topic/greetings';
   stompClient: any;
   constructor() {
@@ -50,10 +50,10 @@ export class WebSocketAPIService {
   }
 
   onMessageReceived(message) {
-    this.remoteMonitoringCompSource.next(message);
+    this.gestionStockComponent.next(message);
   }
 
 getRemoteMonitoring(): any {
-    return this.remoteMonitoringCompSource;
+    return this.gestionStockComponent;
 }
 }

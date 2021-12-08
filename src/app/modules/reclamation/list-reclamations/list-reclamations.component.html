@@ -1,0 +1,24 @@
+<div class="main-content ">
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn btn-danger" (click)="submitReclamation()">submit a complaint</button>
+    </div>
+    <div class="row ">
+      <div class="col-lg-4 col-md-6 col-sm-6 mt-4" *ngFor="let rec of reclamations" #target>
+        <mat-card class="example-card">
+          <mat-card-subtitle>{{rec.produit.code}}</mat-card-subtitle>
+          <mat-card-title>{{rec.subject}}</mat-card-title>
+          <mat-card-content>
+            <p> {{rec.body}}</p>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <div [ngClass]="rec.etat?'btn-success':'btn-danger'" class="btn disabled" >
+            <span *ngIf="!rec.etat">not</span>
+            verified
+            <span *ngIf="!rec.etat">yet</span>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

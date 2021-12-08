@@ -14,22 +14,22 @@ export class FactureService {
   }
 
   findAll(): Observable<Facture[]> {
-    return this.http.get<Facture[]>(`${this.url}/list`);
+    return this.http.get<Facture[]>(`${this.url}/list`,{headers : environment.headers});
   }
 
   findById(id: number): Observable<Facture>{
-    return this.http.get<Facture>(`${this.url}/findById/${id}`);
+    return this.http.get<Facture>(`${this.url}/findById/${id}`,{headers : environment.headers});
   }
 
   add(facture: Facture){
-    return this.http.post(`${this.url}/add`, facture);
+    return this.http.post(`${this.url}/add`, facture,{headers : environment.headers});
   }
 
   update(facture: Facture){
-    return this.http.put(`${this.url}/update/${facture.idFacture}`, facture);
+    return this.http.put(`${this.url}/update/${facture.idFacture}`, facture,{headers : environment.headers});
   }
 
   delete(facture: Facture){
-    return this.http.delete(`${this.url}/delete/${facture.idFacture}`);
+    return this.http.delete(`${this.url}/delete/${facture.idFacture}`,{headers : environment.headers});
   }
 }

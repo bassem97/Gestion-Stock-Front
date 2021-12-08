@@ -1,0 +1,19 @@
+<div  class="main-card  card" >
+  <div class="card-header">
+    <h1 mat-dialog-title> Warning</h1>
+  </div>
+  <div class="card-body">
+    <div mat-dialog-content>
+      {{deleteMessage()}}
+    </div>
+
+  </div>
+  <div class="card-footer">
+    <div style="width:100% ">
+      <div style="float: right">
+        <button class="btn btn-danger" mat-button [mat-dialog-close]="true" cdkFocusInitial>Delete</button>
+        <button class="btn btn-info" mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

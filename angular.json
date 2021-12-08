@@ -21,9 +21,11 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/styles.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
               "src/assets/css/demo.css"
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -96,8 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestion-stock-front:build",
-
+            "browserTarget": "gestion-stock-front:build"
 
 
           }

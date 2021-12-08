@@ -5,7 +5,8 @@
     "module": "es2020",
     "baseUrl": "",
     "types": [],
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false
   },
   "exclude": [
     "test.ts",
