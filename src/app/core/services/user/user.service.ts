@@ -11,13 +11,20 @@ import {User} from "../../models/user";
 export class UserService {
   private baseurl = environment.url + 'user/';
   private headers: HttpHeaders;
-  activeUser: User;
+  private _activeUser: User = <User>{};
 
   constructor(private http: HttpClient) {
-    // @ts-ignore
-    this.findUserWithToken().subscribe((user) => (this.activeUser = user));
+    this.findUserWithToken().subscribe(user =>  this.activeUser = user);
   }
 
+
+  get activeUser(): User {
+    return this._activeUser;
+  }
+
+  set activeUser(user: User) {
+    this._activeUser = user;
+  }
 
   public findUserWithToken() {
     this.headers = new HttpHeaders({
@@ -70,4 +77,10 @@ export class UserService {
   // changeRole(id, role) {
   //   return this.http.get(this.baseurl + 'makeRevokeAdmin/' + id + '/' + role);
   // }
+
+  getDarkMode():boolean{
+    let isDarkMode;
+    this.findUserWithToken().subscribe(user => isDarkMode = user.isDarkMode)
+    return isDarkMode
+  }
 }

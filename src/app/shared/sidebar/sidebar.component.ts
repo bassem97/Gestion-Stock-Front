@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {User} from "../../core/models/user";
 
 declare const $: any;
 declare interface RouteInfo {
@@ -26,10 +27,13 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  @Input() connectedUser: User;
+
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.connectedUser);
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {

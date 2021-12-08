@@ -3,11 +3,11 @@
   <div   class="logo  ">
     <a href="https://www.creative-tim.com" class="simple-text">
 
-      Stock Manager
+      {{connectedUser.email}}
     </a>
   </div>
 <!--  <div   class="sidebar-wrapper dark-mode"  >-->
-  <div   class="sidebar-wrapper  "  >
+  <div   class="sidebar-wrapper" [ngClass]="connectedUser.isDarkMode?'dark-mode':''"  >
     <div *ngIf="isMobileMenu()">
       <form class="navbar-form">
       <span class="bmd-form-group">

@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
 import {WebSocketAPIService} from "../../core/services/webSocketAPI/web-socket-api.service";
+import {UserService} from "../../core/services/user/user.service";
+import {User} from "../../core/models/user";
 
 @Component({
   selector: 'app-admin-layout',
@@ -17,6 +19,7 @@ export class AdminLayoutComponent implements OnInit {
   private lastPoppedUrl: undefined;
   private yScrollStack: number[] = [];
   showDiv: boolean;
+  connectedUser : User = new User();
 
   constructor( public location: Location,
                private router: Router,

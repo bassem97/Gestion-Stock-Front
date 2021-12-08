@@ -31,6 +31,7 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
     RouterModule,
     MatDialogModule,
     MatButtonModule,
+
   ]
 })
 export class SharedModule { }

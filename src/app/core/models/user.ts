@@ -10,9 +10,12 @@ export class User {
   email: string;
   cin: string;
   password: string;
+  isDarkMode : boolean;
   categorieUser: string;
   proffesion: string;
   factures: Facture[];
   roles: Role[];
+
+
 
 }
