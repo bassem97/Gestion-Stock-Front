@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Client } from 'stompjs';
 import {User} from "../../models/user";
+import {Produit} from "../../models/produit";
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +40,10 @@ export class UserService {
     return this.http.post(this.baseurl + 'add', user,{headers : environment.headers});
   }
 
-  switchDarkMode(user : User){
-    return this.http.put(this.baseurl + 'switchTheme', user,{headers : environment.headers});
+  update(user: User): Observable<User>{
+    return this.http.put<User>(this.baseurl + "update/" + user.idUser, user,{headers : environment.headers});
   }
+
 
   list(): Observable<any> {
     return this.http.get(this.baseurl + 'list');

@@ -35,12 +35,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(){
-
     this.webSocketAPI._connect();
     this.webSocketAPI.webSocketNotifier.subscribe(res => {
-      this.darkModeSwitcherService.setDarkMode(!this.darkModeSwitcherService.getDarkMode());
-      console.log(this.darkModeSwitcherService.getDarkMode());
+      console.log("AAAAAAAAAA"+this.connectedUser);
+      console.log("AAAAAAAAAA2"+this.darkModeSwitcherService.getDarkMode());
+      this.darkModeSwitcherService.setDarkMode(this.connectedUser.darkMode);
+      // console.log(this.darkModeSwitcherService.getDarkMode());
     });
+
 
 
     this.listTitles = ROUTES.filter(listTitle => listTitle);
@@ -151,10 +153,10 @@ export class NavbarComponent implements OnInit {
   }
 
   switchDarkMode() {
-    this.userService.switchDarkMode(this.connectedUser).subscribe(res =>{
-      this.darkModeSwitcherService.setDarkMode(this.darkModeSwitcherService.getDarkMode())
-    });
-
+    this.darkModeSwitcherService.setDarkMode(!this.getDarkMode());
+    this.connectedUser.darkMode = this.getDarkMode();
+    this.userService.update(this.connectedUser).subscribe()
+    console.log(this.getDarkMode());
   }
 
   getDarkMode():boolean{

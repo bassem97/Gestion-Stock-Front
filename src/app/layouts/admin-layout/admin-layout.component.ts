@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import {WebSocketAPIService} from "../../core/services/webSocketAPI/web-socket-api.service";
 import {UserService} from "../../core/services/user/user.service";
 import {User} from "../../core/models/user";
+import {DarkModeSwitcherService} from "../../core/services/dark-mode/dark-mode-switcher.service";
 
 @Component({
   selector: 'app-admin-layout',
@@ -23,14 +24,19 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor( public location: Location,
                private router: Router,
-                private  userService: UserService
+                private  userService: UserService,
+               private darkModeSwitcherService: DarkModeSwitcherService,
+               private webSocketAPI: WebSocketAPIService
+
+
 
   ) {}
 
   ngOnInit() {
     this.userService.findUserWithToken().subscribe(user => {
       this.connectedUser = user;
-    })
+    });
+
     this.showDiv = true;
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
