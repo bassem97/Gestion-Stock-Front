@@ -23,7 +23,6 @@ export class ListComponent implements OnInit {
   private refreshData(){
     this.factureService.findAll().subscribe(value => {
       this.factures = value;
-      console.log(this.factures)
     })
   }
 
@@ -32,7 +31,6 @@ export class ListComponent implements OnInit {
       width: '60%',
       height: '64%',
       data: [null, 'facture'],
-
     });
     dialogRef.afterClosed().subscribe();
   }
