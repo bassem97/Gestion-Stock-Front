@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../core/models/user";
+import {DarkModeSwitcherService} from "../../core/services/dark-mode/dark-mode-switcher.service";
 
 declare const $: any;
 declare interface RouteInfo {
@@ -30,7 +31,7 @@ export class SidebarComponent implements OnInit {
   @Input() connectedUser: User;
 
 
-  constructor() { }
+  constructor(private darkModeSwitcherService: DarkModeSwitcherService) { }
 
   ngOnInit() {
     console.log(this.connectedUser);
@@ -40,4 +41,8 @@ export class SidebarComponent implements OnInit {
       return $(window).width() <= 991;
 
   };
+
+  getDarkMode():boolean{
+    return this.darkModeSwitcherService.getDarkMode()
+  }s
 }

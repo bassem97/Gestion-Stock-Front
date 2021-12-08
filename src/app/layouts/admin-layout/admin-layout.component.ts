@@ -23,11 +23,14 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor( public location: Location,
                private router: Router,
-
+                private  userService: UserService
 
   ) {}
 
   ngOnInit() {
+    this.userService.findUserWithToken().subscribe(user => {
+      this.connectedUser = user;
+    })
     this.showDiv = true;
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 

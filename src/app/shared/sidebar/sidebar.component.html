@@ -1,13 +1,13 @@
 <div>
 <!--  <div   class="logo  dark-mode">-->
-  <div   class="logo  ">
+  <div   class="logo  " [ngClass]="getDarkMode()?'bg-premium-dark':'bg-light'">
     <a href="https://www.creative-tim.com" class="simple-text">
 
-      {{connectedUser.email}}
+      STOCK MANAGER
     </a>
   </div>
-<!--  <div   class="sidebar-wrapper dark-mode"  >-->
-  <div   class="sidebar-wrapper" [ngClass]="connectedUser.isDarkMode?'dark-mode':''"  >
+<!--  <div   class="sidebar-wrapper "  >-->
+  <div   class="sidebar-wrapper" [ngClass]="getDarkMode()?'bg-premium-dark':'bg-light'"  >
     <div *ngIf="isMobileMenu()">
       <form class="navbar-form">
       <span class="bmd-form-group">

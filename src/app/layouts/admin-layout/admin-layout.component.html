@@ -4,10 +4,10 @@
         <div class="sidebar-background" style="background-image: url('./assets/img/sidebar-4.jpg')"></div>
     </div>
     <div class="main-panel">
-      {{connectedUser.email}}
-<!--        <app-navbar [connectedUser]="connectedUser"></app-navbar>-->
-        <app-navbar ></app-navbar>
-        <router-outlet></router-outlet>
+
+        <app-navbar [connectedUser]="connectedUser"></app-navbar>
+<!--        <app-navbar ></app-navbar>-->
+        <router-outlet ></router-outlet>
         <div *ngIf="isMaps('maps')">
             <app-footer></app-footer>
         </div>

@@ -7,3 +7,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: black
 }
 
+.swatch-holder{width:24px;height:24px;line-height:24px;margin:5px 5px 0;transition:all .2s;opacity:.7;display:inline-block;border-radius:30px }
+.swatch-holder.active{border:#fff solid 2px;box-shadow:0 0 0 5px #3f6ad8;opacity:1 }
+.swatch-holder:hover{opacity:1 }
+
+.bg-light{background-color:#eee !important }
+.bg-premium-dark{background-image:linear-gradient(to right, #434343 0%, black 100%) !important }
+
+
+

@@ -1,10 +1,12 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, OnInit, ElementRef, Input} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 import {AuthenticationService} from "../../core/services/auth/authService";
 import {User} from "../../core/models/user";
 import {UserService} from "../../core/services/user/user.service";
+import {WebSocketAPIService} from "../../core/services/webSocketAPI/web-socket-api.service";
+import {DarkModeSwitcherService} from "../../core/services/dark-mode/dark-mode-switcher.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,26 +14,34 @@ import {UserService} from "../../core/services/user/user.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Input() connectedUser: User;
   private listTitles: any[];
   location: Location;
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
-  activeUser: User;
 
 
   constructor(location: Location,
               private element: ElementRef,
               private router: Router,
               private authService: AuthenticationService,
-              private userService: UserService
+              private userService: UserService,
+              private webSocketAPI: WebSocketAPIService,
+              private darkModeSwitcherService: DarkModeSwitcherService
   ) {
     this.location = location;
     this.sidebarVisible = false;
   }
 
   ngOnInit(){
-    this.userService.findUserWithToken().subscribe(user =>  this.activeUser = user);
+
+    this.webSocketAPI._connect();
+    this.webSocketAPI.webSocketNotifier.subscribe(res => {
+      this.darkModeSwitcherService.setDarkMode(!this.darkModeSwitcherService.getDarkMode());
+      console.log(this.darkModeSwitcherService.getDarkMode());
+    });
+
 
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
@@ -138,5 +148,16 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.authService.logOut();
+  }
+
+  switchDarkMode() {
+    this.userService.switchDarkMode(this.connectedUser).subscribe(res =>{
+      this.darkModeSwitcherService.setDarkMode(this.darkModeSwitcherService.getDarkMode())
+    });
+
+  }
+
+  getDarkMode():boolean{
+    return this.darkModeSwitcherService.getDarkMode()
   }
 }

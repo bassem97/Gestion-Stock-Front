@@ -9,6 +9,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { DeleteDialogStockComponent } from './dialogs/delete-dialog-stock/delete-dialog-stock.component';
 import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -26,12 +27,13 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
     NavbarComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatDialogModule,
-    MatButtonModule,
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatTooltipModule,
 
-  ]
+    ]
 })
 export class SharedModule { }

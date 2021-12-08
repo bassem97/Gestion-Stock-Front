@@ -36,7 +36,11 @@ export class UserService {
   }
 
   add(user: User) {
-    return this.http.post(this.baseurl + 'add', user);
+    return this.http.post(this.baseurl + 'add', user,{headers : environment.headers});
+  }
+
+  switchDarkMode(user : User){
+    return this.http.put(this.baseurl + 'switchTheme', user,{headers : environment.headers});
   }
 
   list(): Observable<any> {
@@ -80,7 +84,7 @@ export class UserService {
 
   getDarkMode():boolean{
     let isDarkMode;
-    this.findUserWithToken().subscribe(user => isDarkMode = user.isDarkMode)
+    this.findUserWithToken().subscribe(user => isDarkMode = user.darkMode)
     return isDarkMode
   }
 }

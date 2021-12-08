@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top  "  >
-  <div class="container-fluid">
-    <div class="navbar-wrapper">
+  <div class="container-fluid " >
+    <div class="navbar-wrapper ">
       <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
     </div>
     <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
@@ -35,9 +35,18 @@
             <p>
               <span class="d-lg-none d-md-block">Account</span>
             </p>
-            <strong> {{activeUser.email}}</strong>
+            <strong> {{connectedUser.email}}</strong>
 
           </a>
+        </li>
+        <li class="nav-item">
+          <div >
+            <div class="swatch-holder bg-light switch-header-cs-class" mat-raised-button *ngIf="getDarkMode()" (click)="switchDarkMode()"  style="cursor: pointer" matTooltip="Light mode" data-class="bg-light sidebar-text-dark header-text-dark">
+            </div>
+            <div class="swatch-holder bg-premium-dark switch-header-cs-class"  mat-raised-button *ngIf="!getDarkMode()"  (click)="switchDarkMode()"   style="cursor: pointer" matTooltip="Dark mode" data-class="bg-premium-dark sidebar-text-dark header-text-light">
+            </div>
+          </div>
+
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -10,7 +10,7 @@ export class User {
   email: string;
   cin: string;
   password: string;
-  isDarkMode : boolean;
+  darkMode : boolean;
   categorieUser: string;
   proffesion: string;
   factures: Facture[];
