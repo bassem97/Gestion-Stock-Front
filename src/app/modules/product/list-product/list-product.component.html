@@ -1,0 +1,16 @@
+<!--<div class="main-content dark-mode">-->
+<div class="main-content ">
+  <div class="container-fluid">
+
+
+    <div class="row">
+      <button class="btn btn-danger" (click)="showForm()">Add new Product</button>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let product of products">
+        <app-produit [product]="product" (deleteEvent)="delete(product.idProduit)"></app-produit>
+      </div>
+    </div>
+  </div>
+</div>

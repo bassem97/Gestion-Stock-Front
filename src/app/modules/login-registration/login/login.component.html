@@ -1,0 +1,152 @@
+<div class="login-page">
+  <mat-card class="mat-elevation-z1">
+    <mat-card-title style="text-align: center">SignUp</mat-card-title>
+    <mat-tab-group class="example-stretched-tabs" mat-stretch-tabs>
+      <mat-tab label="Register">
+        <mat-card-content>
+          <form [formGroup]="signUpForm">
+            <mat-form-field>
+              <input
+                [(ngModel)]="user.firstName"
+                formControlName="nom"
+                matInput
+                placeholder="nom"
+                required
+              />
+              <mat-icon matSuffix>perm_identity</mat-icon>
+              <mat-error *ngIf="!nom.valid && nom.touched">
+                {{ getErrorNom() }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                [(ngModel)]="user.lastName"
+                formControlName="prenom"
+                matInput
+                name="prenom"
+                placeholder="prenom"
+                required
+              />
+              <mat-icon matSuffix>perm_identity</mat-icon>
+              <mat-error *ngIf="!prenom.valid && prenom.touched">
+                {{ getErrorPrenom() }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                [(ngModel)]="user.email"
+                formControlName="email"
+                matInput
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <mat-error *ngIf="!email.valid && email.touched">
+                {{ getErrorEmail() }}
+              </mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <!--              <mat-pass-toggle-visibility #toggle  matSuffix></mat-pass-toggle-visibility>-->
+              <input
+                [(ngModel)]="user.password"
+                formControlName="password"
+                matInput
+                placeholder="Password"
+                required
+                type="password"
+              />
+              <mat-hint *ngIf="repassword.untouched"
+                >Choose a password of at least eight characters, one uppercase
+                letter and one number
+              </mat-hint>
+              <mat-error *ngIf="!password.valid && password.touched">
+                {{ getErrorPassword() }}
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <!--              <mat-pass-toggle-visibility #toggle2  matSuffix></mat-pass-toggle-visibility>-->
+              <!--                [type]="toggle2.type"-->
+
+              <input
+                formControlName="repassword"
+                matInput
+                minlength="6"
+                name="repassword"
+                placeholder="Confirm password"
+                required
+                type="password"
+              />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="!repassword.valid && repassword.touched">
+                {{ getErrorRepassword() }}
+              </mat-error>
+            </mat-form-field>
+            <button
+              [disabled]="signUpForm.invalid"
+              class="login-button"
+              color="primary"
+              mat-raised-button
+              type="submit"
+              (click)="onClickSignUp()"
+            >
+              Sign Up
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Login">
+        <mat-card-content>
+          <form [formGroup]="loginForm">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Username"
+                required
+                [(ngModel)]="loginModel.email"
+                formControlName="email"
+              />
+              <!--              <mat-error *ngIf="loginForm.get('username').hasError('required')">UserName is required</mat-error>-->
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-pass-toggle-visibility
+                #toggle3
+                matSuffix
+              ></mat-pass-toggle-visibility>
+              <!--                [type]="toggle3.type"-->
+              <input
+                matInput
+                placeholder="Password"
+                required
+                id="password"
+                [(ngModel)]="loginModel.password"
+                formControlName="password"
+              />
+              <!--              <mat-error-->
+              <!--                *ngIf="loginForm.get('password').hasError('required')">-->
+              <!--                Password is required-->
+              <!--              </mat-error>-->
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-checkbox>Remember Me!</mat-checkbox>
+            <button
+              mat-raised-button
+              color="primary"
+              class="login-button"
+              type="submit"
+              (click)="submit()"
+            >
+              Log In
+            </button>
+
+            <button mat-raised-button class="login-button">
+              Login with Google
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

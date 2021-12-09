@@ -1,0 +1,66 @@
+<div class="main-content ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="height: 100%">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Product</h4>
+            <p class="card-category">Complete Product Information</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="facture.dateFacture"
+                           matInput
+                           formControlName="dateFacture"
+                           placeholder="dateFacture"
+                           required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-error *ngIf="!dateFacture.valid && dateFacture.touched">
+                      {{ getErrorDateFacture() }}
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input type="number" [(ngModel)]="facture.montantFacture"
+                           matInput
+                           formControlName="prixUnitaire"
+                           placeholder="PrixUnitaire"
+                           required>
+                    <mat-icon matSuffix>credit_card</mat-icon>
+
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button *ngIf="data[0]!=null; else add" mat-raised-button type="submit" class="btn btn-danger pull-right"
+                      color="primary"
+                      [disabled]="form.invalid" (click)="updateFacture()">Update Product
+              </button>
+
+              <ng-template #add>
+                <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                        color="primary"
+                        [disabled]="form.invalid" (click)="saveFacture()" [mat-dialog-close]="true">
+                  Add Product
+                </button>
+              </ng-template>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

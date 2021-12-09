@@ -1,0 +1,132 @@
+<div class="main-content ">
+  <div class="container-fluid">
+    <img *ngIf="file != null && !loader" [src]="file" style="height: 100%; width: 100%; " alt="">
+    <div style="width: 96%; height: 0;">
+      <input type="file" hidden accept="image/*" (change)="onSelectFile(fileInput.files)" name="file" style="margin-top: 30px; font-weight: normal;" #fileInput>
+      <button mat-icon-button color="primary" (click)="fileInput.click(); " style=" margin-top: -35px; background-color: #F0F0F0; margin-left: -55px; position: absolute"><mat-icon >camera_alt</mat-icon></button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="height: 100%">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Product</h4>
+            <p class="card-category">Complete Product Information</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="productForm">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="product.code"
+                           formControlName="code"
+                           matInput
+                           placeholder="Code"
+                           required>
+                    <mat-icon matSuffix>badge</mat-icon>
+                    <mat-error *ngIf="!code.valid && code.touched">
+                      {{ getErrorCode() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="product.libelle"
+                           formControlName="libelle"
+                           matInput
+                           placeholder="Libelle"
+                           required>
+                    <mat-icon matSuffix>description</mat-icon>
+                    <mat-error *ngIf="!libelle.valid && libelle.touched">
+                      {{ getErrorLibelle() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="product.prixUnitaire" formControlName="prixUnitaire"
+                           matInput
+                           placeholder="PrixUnitaire"
+                           required
+                           type="number">
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                    <mat-error *ngIf="!prixUnitaire.valid && prixUnitaire.touched">
+                      {{ getErrorPrixUnitaire() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Rayon</mat-label>
+                    <mat-select formControlName="rayon">
+                      <mat-option *ngFor="let rayon of rayons" [value]="rayon">
+                        {{rayon.code}} - {{rayon.libelle}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!rayon.valid && rayon.touched">
+                      {{ getErrorRayon() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Stock</mat-label>
+                    <mat-select formControlName="stock" required>
+                      <mat-option *ngFor="let stock of stocks" [value]="stock">
+                        {{stock.libelleStock}}: Qte Min: {{stock.qteMin}} - Qte: {{stock.qte}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!stock.valid && stock.touched">
+                      {{ getErrorStock() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select formControlName="categorie" required value="ELECTROMENAGER">
+                      <mat-option value="ELECTROMENAGER">ELECTROMENAGER</mat-option>
+                      <mat-option value="ALIMENTAIRE">ALIMENTAIRE</mat-option>
+                      <mat-option value="QUINCAILLERIE">QUINCAILLERIE</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fournisseur</mat-label>
+                    <mat-select formControlName="fournisseurs" multiple required>
+                      <mat-option *ngFor="let fournisseur of fournisseursArray" [value]="fournisseur">
+                        {{fournisseur.code}} - {{fournisseur.libelle}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="!fournisseurs.valid && fournisseurs.touched">
+                      {{ getErrorFournisseur() }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+              <button (click)="updateProduct()" *ngIf="data[0]!=null; else add" [disabled]="productForm.invalid" class="btn btn-danger pull-right"
+                      color="primary"
+                      mat-raised-button type="submit">Update Product
+              </button>
+
+              <ng-template #add>
+                <button (click)="saveProduct()" [disabled]="productForm.invalid" [mat-dialog-close]="true"
+                        class="btn btn-danger pull-right"
+                        color="primary" mat-raised-button type="submit">
+                  Add Product
+                </button>
+              </ng-template>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
