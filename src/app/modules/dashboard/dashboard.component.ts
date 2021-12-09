@@ -83,6 +83,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userService.list().subscribe(value => this.usersNumber = value.length);
+
     this.reclamationService.findAll().subscribe(value => this.reclamationsNumber = value.filter(value1 => !value1.etat).length);
     this.getMonthlyRevenue();
     this.webSocketAPI._connect();
