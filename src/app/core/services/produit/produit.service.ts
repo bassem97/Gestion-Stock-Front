@@ -34,4 +34,8 @@ export class ProduitService {
   findById(id: number): Observable<Produit> {
     return this.http.get<Produit>(this.url + "findById/" + id,{headers : environment.headers});
   }
+
+  getMonthlyRevenue(): Observable<number> {
+    return  this.http.get<number>(this.url + "revenue", {headers : environment.headers});
+  }
 }

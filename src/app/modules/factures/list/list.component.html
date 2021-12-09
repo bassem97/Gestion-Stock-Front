@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <button class="btn btn-danger" (click)="toggleForm()">Ajouter</button>
+      <button class="btn btn-danger" (click)="openAddDialog()">Ajouter</button>
     </div>
     <div class="card">
       <div class="card-header card-header-warning">
@@ -24,10 +24,16 @@
           <td>{{facture.montantFacture}}$</td>
           <td>{{facture.montantRemise}}$</td>
           <td>
-            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">edit</mat-icon>
+            <button class="btn btn-info" (click)="openEditDialog(facture)">
+<!--            <button class="btn" >-->
+              <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">edit</mat-icon>
+            </button>
           </td>
           <td>
-            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">delete_outline</mat-icon>
+            <button class="btn btn-danger" (click)="openDeleteDialog(facture)" >
+              <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">delete_outline</mat-icon>
+            </button>
+
           </td>
         </tr>
         </tbody>
