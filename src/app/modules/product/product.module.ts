@@ -13,6 +13,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -20,7 +22,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   declarations: [
     AddProductComponent,
     ListProductComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailsComponent
   ],
   exports: [
     AddProductComponent,
@@ -38,7 +41,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    RouterModule
   ]
 })
 export class ProductModule { }

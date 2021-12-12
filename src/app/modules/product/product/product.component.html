@@ -19,6 +19,10 @@
               <button type="button" (click)="openEditEmpDialog(product)" style="border-radius: 12px" class="btn btn-info btn-sm" matTooltip="edit product">
                 <mat-icon>edit</mat-icon>
               </button>
+
+              <button type="button" routerLink="/product/{{product.idProduit}}" style="border-radius: 12px" class="btn btn-warning btn-sm" matTooltip="edit product">
+                <mat-icon>visibility</mat-icon>
+              </button>
             </div>
           </div>
         </div>
