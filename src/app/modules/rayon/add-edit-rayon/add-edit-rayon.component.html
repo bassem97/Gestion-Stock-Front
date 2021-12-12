@@ -4,7 +4,7 @@
     <input name="code_" style=" background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="code_" id="code" type="text" class="form-control">
     <div class="alert alert-danger" *ngIf="myForm.controls['code_'].invalid && myForm.controls['code_'].touched">
       <div *ngIf="myForm.controls['code_'].hasError('required')">Veuillez saisir ce champ.</div>
-      <div *ngIf="myForm.controls['code_'].hasError('minlength')">Le champ réservé au code est trop court(4 caractères min).</div>
+      <div *ngIf="myForm.controls['code_'].hasError('minlength')">Le champ réservé au code est trop court. (4 caractères min)</div>
     </div>
   </div>
   <br>
@@ -12,34 +12,8 @@
     <label for="libelle">Libelle</label>
     <input name="libelle_" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="libelle_" id="libelle" type="text" class="form-control">
     <div class="alert alert-danger" *ngIf="myForm.controls['libelle_'].invalid && myForm.controls['libelle_'].touched">
-      <div *ngIf="myForm.controls['libelle_'].hasError('required')">Veuillez saisir ce champ.</div>
-      <div *ngIf="myForm.controls['libelle_'].hasError('minlength')">Le champ libellé est trop court(4 caractères min).</div>
-    </div>
-  </div>
-  <br>
-  <div class="form-group">
-    <label for="localisation">Localisation</label>
-    <input name="localisation_" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="localisation_" id="localisation" type="text" class="form-control">
-    <div class="alert alert-danger" *ngIf="myForm.controls['localisation_'].invalid && myForm.controls['localisation_'].touched">
-      <div *ngIf="myForm.controls['localisation_'].hasError('required')">Veuillez saisir ce champ.</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="label">
-      <i class="material-icons">attach_file</i>
-      <span class="title">Add Image</span>
-    <input
-      formControlName="file"
-      id="file"
-      type="file"
-      accept="image/*"
-      class="form-control"
-      (change)="onFileChange($event)">
-    </label>
-    <br>
-    <img [src]="url" style="width: 200px;height: 200px" >
-    <div *ngIf="myForm.controls['file'].invalid && myForm.controls['file'].touched" class="alert alert-danger">
-      <div *ngIf="myForm.controls['file'].hasError('required')">Image(obligatoire).</div>
+      <div *ngIf="myForm.controls['libelle_'].hasError('required')">Veuillez saisir ce champ</div>
+      <div *ngIf="myForm.controls['libelle_'].hasError('minlength')">Le champ libellé est trop court. (4 caractères min)</div>
     </div>
   </div>
   <br>

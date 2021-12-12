@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddEditFournisseurcomponentComponent } from './add-edit-fournisseurcomponent/add-edit-fournisseurcomponent.component';
+import {ShowOnerayonComponent} from "./show-onerayon/show-onerayon.component";
+import {AddEditRayonComponent} from "./add-edit-rayon/add-edit-rayon.component";
+import {ListrayonComponent} from "./listrayon/listrayon.component";
 import {NgLetModule} from "ng-let";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {ListfournisseurcomponentComponent} from "./listfournisseurcomponent/listfournisseurcomponent.component";
 
 
 
 @NgModule({
   declarations: [
-    AddEditFournisseurcomponentComponent,
-    ListfournisseurcomponentComponent
+    ShowOnerayonComponent,
+    AddEditRayonComponent,
+    ListrayonComponent,
   ],
   imports: [
     CommonModule,
@@ -21,4 +23,4 @@ import {ListfournisseurcomponentComponent} from "./listfournisseurcomponent/list
     HttpClientModule
   ]
 })
-export class FournisseurModule { }
+export class RayonModule { }

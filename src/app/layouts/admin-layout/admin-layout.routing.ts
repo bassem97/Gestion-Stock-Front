@@ -6,11 +6,13 @@ import { TableListComponent } from '../../modules/table-list/table-list.componen
 import { UpgradeComponent } from '../../modules/upgrade/upgrade.component';
 import {ProductComponent} from "../../modules/product/product/product.component";
 import {ListProductComponent} from "../../modules/product/list-product/list-product.component";
-import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
+
 import {ListStockComponent} from "../../modules/stock/list-stock/list-stock.component";
 import {ListReclamationsComponent} from "../../modules/reclamation/list-reclamations/list-reclamations.component";
 import {ListComponent} from "../../modules/factures/list/list.component";
 import {ProductDetailsComponent} from "../../modules/product/product-details/product-details.component";
+import {ListrayonComponent} from "../../modules/rayon/listrayon/listrayon.component";
+import {ListfournisseurcomponentComponent} from "../../modules/fournisseur/listfournisseurcomponent/listfournisseurcomponent.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -69,6 +71,7 @@ export const AdminLayoutRoutes: Routes = [
     },
     { path: 'product/:idProduct',        component: ProductDetailsComponent},
     { path: 'fournisseur',    component: ListfournisseurcomponentComponent },
+    { path: 'rayon',          component: ListrayonComponent },
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'stock',          component: ListStockComponent },
     { path: 'reclamation',    component: ListReclamationsComponent },

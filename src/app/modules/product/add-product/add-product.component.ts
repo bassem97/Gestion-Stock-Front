@@ -3,12 +3,12 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Produit} from "../../../core/models/produit";
 import {Stock} from "../../../core/models/stock";
-import {Rayon} from "../../../core/models/rayon";
+import {rayon} from "../../../core/models/rayon";
 import {RayonService} from "../../../core/services/rayon/rayon.service";
 import {StockService} from "../../../core/services/stock/stock.service";
 import {ProduitService} from "../../../core/services/produit/produit.service";
 import {fournisseur} from "../../../core/models/fournisseur";
-import {FournisseurService} from "../../../core/services/fournisseur.service";
+import {FournisseurService} from "../../../core/services/fournisseur/fournisseur.service";
 import {UploadService} from "../../../core/services/upload/upload.service";
 
 @Component({
@@ -21,7 +21,7 @@ export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   product: Produit;
   stocks: Stock[];
-  rayons: Rayon[];
+  rayons: rayon[];
   fournisseursArray: fournisseur[];
   file: string;
   loader = false;
@@ -80,14 +80,14 @@ export class AddProductComponent implements OnInit {
         this.productForm.get('stock')?.setValue(toSelect);
       }
     });
-    this.fournisseurService.findAll().subscribe(value => {
+    this.fournisseurService.getAllfournisseurs().subscribe(value => {
       this.fournisseursArray = value;
       if (this.data[0]) {
         const toSelect = this.fournisseursArray.filter(fournisseur => this.product.fournisseurs.findIndex(value1 => fournisseur.idFournisseur == value1.idFournisseur) != -1);
         this.productForm.get('fournisseurs')?.setValue(toSelect);
       }
     });
-    this.rayonService.findAll().subscribe(value => {
+    this.rayonService.getAllrayons().subscribe(value => {
       this.rayons = value;
       if (this.data[0]) {
         const toSelect = this.rayons.find(rayon => rayon.idRayon == this.product.rayon.idRayon);

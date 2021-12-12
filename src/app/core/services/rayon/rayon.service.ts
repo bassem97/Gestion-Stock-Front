@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Rayon} from "../../models/rayon";
+import {HttpClient} from "@angular/common/http";
+import {rayon} from "../../models/rayon";
+import {Produit} from "../../models/produit";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RayonService {
 
-  url = environment.url + "rayon/";
+  constructor(private http :HttpClient) { }
+  url = environment.url;
+  // getAllproduits():Observable<produit[]>{
+  //   return this.http.get<produit[]>("/api/Produit");
+  // }
 
-  constructor(private http: HttpClient) { }
-
-  findAll(): Observable<Rayon[]> {
-    return this.http.get<Rayon[]>(this.url + "list",{headers : environment.headers});
+  getAllrayons():Observable<rayon[]>{
+    return this.http.get<rayon[]>(this.url+"Rayons",{headers : environment.headers});
+  }
+  deleterayon(rayon: rayon){
+    return this.http.post(this.url+"Rayon/Delete",rayon,{headers : environment.headers});
+  }
+  addrayon(rayon: rayon){
+    return this.http.post(this.url+"Rayon/Add",rayon,{headers : environment.headers});
+  }
+  modifyrayon(rayon: rayon){
+    return this.http.put(this.url+"Rayon/Update",rayon,{headers : environment.headers})
   }
 }

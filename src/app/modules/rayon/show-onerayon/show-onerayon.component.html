@@ -1,0 +1,30 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title ">Rayon numéro:&ensp;{{rayon.idRayon}}</h4>
+  </div>
+  <img src="./assets/img/rayon.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title text-primary">libellè:&ensp;{{rayon.libelle}}</h5>
+    <p class="card-text">code:&ensp;{{rayon.code}}</p>
+    <div class="form-group">
+      <h1>Liste des produits</h1>
+      <p>code:&emsp;libellé:&emsp;prix unitaire:</p>
+      <select size="5" class="form-control mr-4">
+      <option *ngFor="let produit of rayon.set_r_produits" [value]="produit.idProduit" >
+        {{produit.code}}{{", "+produit.libelle}}{{", "+produit.prixUnitaire+" Dt"}}
+      </option>
+    </select>
+    </div>
+
+<!--    <ul>-->
+<!--      <li *ngFor="let produit of rayon.produit">-->
+<!--        <span>{{produit.idProduit}}</span>-->
+<!--        <span>{{produit.code}}</span>-->
+<!--        <span>{{produit.libelle}}</span>-->
+<!--        <span>{{produit.prixUnitaire}}</span>-->
+<!--      </li>-->
+<!--    </ul>-->
+    <button id="supprimer" class="btn btn-danger" style="margin: 10px" (click)="appliquer_supp()">Supprimer</button>
+      <button id="modifier" class="btn btn-info" (click)="appliquer_modif()" data-toggle="modal" data-target="#createmodel">Modifier</button>
+  </div>
+</div>

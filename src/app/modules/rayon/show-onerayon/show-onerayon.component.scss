@@ -1,0 +1,33 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+h1{
+  font-family: 'Old Standard TT', serif;
+  display: inline-block;
+  position: relative;
+  font-size: 22px;
+  color: #344055;
+  margin: 0;
+
+}
+
+h1:before{
+  position: absolute;
+  content: '';
+  right: 0%;
+  top: 0%;
+  transform: translate(25px, -15px);
+  font-family: 'Farsan', cursive;
+  display: inline-block;
+  background: #FFA69E;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #FFF;
+  margin: 0;
+  animation: chan-sh 6s ease infinite;
+}
+
+
+@keyframes chan-sh {
+  from  {content: 'free shipping';}
+  to  {content: 'New';}
+
+}

@@ -1,5 +1,5 @@
 import {Stock} from "./stock";
-import {Rayon} from "./rayon";
+import {rayon} from "./rayon";
 import {DetailProduit} from "./detailProduit";
 import {fournisseur} from "./fournisseur";
 import { Reclamation } from "./reclamation";
@@ -12,7 +12,7 @@ export class Produit {
   prixUnitaire: number;
   image: string;
   stock: Stock;
-  rayon: Rayon;
+  rayon: rayon;
   detailProduit: DetailProduit;
   fournisseurs: fournisseur[];
   reclamations: Reclamation[];
@@ -21,6 +21,6 @@ export class Produit {
   constructor() {
     this.detailProduit = new DetailProduit();
     this.stock = new Stock();
-    this.rayon = new Rayon();
+    this.rayon = new rayon();
   }
 }
