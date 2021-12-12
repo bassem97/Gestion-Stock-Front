@@ -4,7 +4,7 @@
     <input name="code_" style=" background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="code_" id="code" type="text" class="form-control">
     <div class="alert alert-danger" *ngIf="myForm.controls['code_'].invalid && myForm.controls['code_'].touched">
       <div *ngIf="myForm.controls['code_'].hasError('required')">Veuillez saisir ce champ.</div>
-      <div *ngIf="myForm.controls['code_'].hasError('minlength')">Le champ réservé au code est trop court. (4 caractères min)</div>
+      <div *ngIf="myForm.controls['code_'].hasError('minlength')">Le champ réservé au code est trop court(4 caractères min).</div>
     </div>
   </div>
   <br>
@@ -12,8 +12,16 @@
     <label for="libelle">Libelle</label>
     <input name="libelle_" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="libelle_" id="libelle" type="text" class="form-control">
     <div class="alert alert-danger" *ngIf="myForm.controls['libelle_'].invalid && myForm.controls['libelle_'].touched">
-      <div *ngIf="myForm.controls['libelle_'].hasError('required')">Veuillez saisir ce champ</div>
-      <div *ngIf="myForm.controls['libelle_'].hasError('minlength')">Le champ libellé est trop court. (4 caractères min)</div>
+      <div *ngIf="myForm.controls['libelle_'].hasError('required')">Veuillez saisir ce champ.</div>
+      <div *ngIf="myForm.controls['libelle_'].hasError('minlength')">Le champ libellé est trop court(4 caractères min).</div>
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="localisation">Localisation</label>
+    <input name="localisation_" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" formControlName="localisation_" id="localisation" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="myForm.controls['localisation_'].invalid && myForm.controls['localisation_'].touched">
+      <div *ngIf="myForm.controls['localisation_'].hasError('required')">Veuillez saisir ce champ.</div>
     </div>
   </div>
   <div class="form-group">
@@ -30,12 +38,27 @@
     </label>
     <br>
     <img [src]="url" style="width: 200px;height: 200px" >
-    <div *ngIf="myForm.controls['file'].touched && myForm.controls['file'].invalid" class="alert alert-danger">
-      <div *ngIf="myForm.controls['file'].hasError('required')">File is required.</div>
+    <div *ngIf="myForm.controls['file'].invalid && myForm.controls['file'].touched" class="alert alert-danger">
+      <div *ngIf="myForm.controls['file'].hasError('required')">Image(obligatoire).</div>
     </div>
   </div>
   <br>
   <button class="btn btn-success" [disabled]="!myForm.valid" (click)="appliquer_ajout_modif()">Appliquer</button>
   <br><br>
   <button class="btn btn-secondary" (click)="ngForm.resetForm()">Reset</button>
+  <br><br>
+  <div class="row" *ngIf="showMsg && name=='Ajouter'">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+        <strong>succès!</strong><br>Enregistrement a été effectué avec succès !
+      </p>
+    </div>
+  </div>
+  <div class="row" *ngIf="showMsg && name=='Modifier'">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+        <strong>succès!</strong><br>Modification a été effectué avec succès !
+      </p>
+    </div>
+  </div>
 </form>

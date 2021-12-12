@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h4 class="card-title ">Search</h4>
+            <h4 class="card-title ">Fouille</h4>
             <p>
               <input #term (keyup)="search_fournisseur(term.value)" style="background-image: linear-gradient(to top, #17a2b8 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);" type="text" class="form-control search-text-indent  searchbar-positioning" >
             </p>
@@ -15,6 +15,7 @@
                   <th>Id</th>
                   <th>Code</th>
                   <th>Libelle</th>
+                  <th>Localisation</th>
                   <th>Avatar</th>
                   <th>Supprimer</th>
                   <th>Modifier</th>
@@ -25,6 +26,7 @@
                     <td>{{fournisseur.idFournisseur}}</td>
                     <td>{{fournisseur.code}}</td>
                     <td>{{fournisseur.libelle}}</td>
+                    <td>{{fournisseur.localisation_fournisseur}}</td>
                   <td><img class="no-image" id="img-result" src="assets/img/{{fournisseur.avatar}}"></td>
                     <td>
                       <button id="supprimer" class="btn btn-danger" (click)="supprimer_fournisseur(fournisseur)">Supprimer</button>
@@ -42,6 +44,7 @@
       </div>
     <br>
     <button (click)="show()" type="button" class="btn btn-dark" href="" data-toggle="modal" data-target="#createmodel" >Ajouter Fournisseur</button>
+    <button (click)="afficher_map()" type="button" class="btn btn-dark" style="margin-left: 1%">Map</button>
     <div class="modal fade" id="createmodel" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -55,16 +58,19 @@
           </div>
           <div class="modal-body">
             <div *ngIf="isshow">
-              <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [fournisseur]="input" [name]="'Modifier'" (ajouter_modifier_fournisseur)="modifier_fournisseur_after($event)" ></app-add-edit-fournisseurcomponent>
+              <app-add-edit-fournisseurcomponent [showMsg]="showMsg" [listfournisseurs]="listfournisseurs" [fournisseur]="input" [name]="'Modifier'" (ajouter_modifier_fournisseur)="modifier_fournisseur_after($event)" ></app-add-edit-fournisseurcomponent>
             </div>
             <div *ngIf="showinput">
-              <app-add-edit-fournisseurcomponent [listfournisseurs]="listfournisseurs" [name]="'Ajouter'" (ajouter_modifier_fournisseur)="ajouter_fournisseur($event)"></app-add-edit-fournisseurcomponent>
+              <app-add-edit-fournisseurcomponent [showMsg]="showMsg" [listfournisseurs]="listfournisseurs" [name]="'Ajouter'" (ajouter_modifier_fournisseur)="ajouter_fournisseur($event)"></app-add-edit-fournisseurcomponent>
             </div>
             <div class="modal-footer">
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div id="showmap" style="display:none">
+    <div id="map"></div>
     </div>
   </div>
 </div>

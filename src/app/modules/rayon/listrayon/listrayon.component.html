@@ -3,11 +3,6 @@
     <div class="row">
       <app-show-onerayon class="col-md-3" *ngFor="let object of listrayons"
                    [rayon]="object" (supprimer_rayon)="supprimer_rayon($event)" (modifier_rayon_before)="modifier_rayon_before($event)" >
-<!--        <ul class="heroes">-->
-<!--          <li >-->
-<!--            <span class="badge">{{object.produit.idProduit}}</span> {{object.produit.code}}-->
-<!--          </li>-->
-<!--        </ul>-->
       </app-show-onerayon>
     </div>
     <br>
@@ -25,10 +20,10 @@
           </div>
           <div class="modal-body">
             <div *ngIf="isshow">
-              <app-add-edit-rayon [listrayons]="listrayons" [rayon]="input" [name]="'Modifier'" (ajouter_modifier_rayon)="modifier_rayon_after($event)" ></app-add-edit-rayon>
+              <app-add-edit-rayon [showMsg]="showMsg" [listrayons]="listrayons" [rayon]="input" [name]="'Modifier'" (ajouter_modifier_rayon)="modifier_rayon_after($event)" ></app-add-edit-rayon>
             </div>
             <div *ngIf="showinput">
-              <app-add-edit-rayon [listrayons]="listrayons" [name]="'Ajouter'" (ajouter_modifier_rayon)="ajouter_rayon($event)"></app-add-edit-rayon>
+              <app-add-edit-rayon [listrayons]="listrayons" [showMsg]="showMsg" [name]="'Ajouter'" (ajouter_modifier_rayon)="ajouter_rayon($event)"></app-add-edit-rayon>
             </div>
             <div class="modal-footer">
             </div>

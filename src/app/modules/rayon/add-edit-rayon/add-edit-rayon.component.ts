@@ -13,6 +13,7 @@ export class AddEditRayonComponent implements OnInit {
   @Input() listrayons:rayon[];
   @Input() rayon:rayon;
   @Input() name: string;
+  @Input() showMsg: boolean = false;
   myForm:FormGroup;
 
   constructor(private http: HttpClient) { }

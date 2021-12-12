@@ -20,4 +20,19 @@
   <button class="btn btn-success" [disabled]="!myForm.valid" (click)="appliquer_ajout_modif()">Appliquer</button>
   <br><br>
   <button class="btn btn-secondary" (click)="ngForm.resetForm()">Reset</button>
+  <br><br>
+  <div class="row" *ngIf="showMsg && name=='Ajouter'">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+        <strong>succès!</strong><br>Enregistrement a été effectué avec succès !
+      </p>
+    </div>
+  </div>
+  <div class="row" *ngIf="showMsg && name=='Modifier'">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+        <strong>succès!</strong><br>Modification a été effectué avec succès !
+      </p>
+    </div>
+  </div>
 </form>

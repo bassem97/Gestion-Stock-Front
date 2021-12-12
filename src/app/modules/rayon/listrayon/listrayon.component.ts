@@ -3,6 +3,7 @@ import {RayonService} from "../../../core/services/rayon.service";
 import {rayon} from "../../../core/models/rayon";
 import {produit} from "../../../core/models/produit";
 
+
 @Component({
   selector: 'app-listrayon',
   templateUrl: './listrayon.component.html',
@@ -14,29 +15,15 @@ export class ListrayonComponent implements OnInit {
   input: rayon;
   showinput:boolean=false;
   isshow:boolean=false;
+  produit:produit;
+  showMsg: boolean = false;
 
   constructor(private rayonservice:RayonService) { }
 
   ngOnInit(): void {
-
-    this.rayonservice.getAllproduits().subscribe(get =>{
-      get.forEach(produit =>{
-        this.listproduits.push(produit);
-      })
-    })
-    console.log(this.listrayons)
-
       this.rayonservice.getAllrayons().subscribe(get =>{
         get.forEach(rayon =>{
-          for (let entry of Array.from(this.listproduits.entries())) {
-            if(entry[1].rayons['idRayon']==rayon.idRayon) {
-              rayon.produit = entry[1];
-              this.listrayons.push(rayon);
-            }
-            else {
-              this.listrayons.push(rayon);
-            }
-          }
+          this.listrayons.push(rayon);
         })
       })
     console.log(this.listrayons)
@@ -45,6 +32,10 @@ export class ListrayonComponent implements OnInit {
   ajouter_rayon($event: rayon) {
   this.rayonservice.addrayon($event).subscribe(()=>{
     this.listrayons.push($event);
+    this.showMsg = true;
+    setTimeout(()=>{
+      this.showMsg = false;
+    }, 2000);
   })
   }
 
@@ -61,6 +52,10 @@ export class ListrayonComponent implements OnInit {
           r.code=$event.code;
         }
       })
+      this.showMsg=true;
+      setTimeout(()=>{
+        this.showMsg = false;
+      }, 2000);
     })
   }
 
@@ -78,6 +73,7 @@ export class ListrayonComponent implements OnInit {
   DynamicModel(){
     this.showinput=false;
     this.isshow=false;
+    this.showMsg=false;
   }
 
   show() {

@@ -4,5 +4,5 @@ export class rayon{
   idRayon: number
   code: string
   libelle: string
-  produit:produit
+  set_r_produits:produit[]=[]
 }

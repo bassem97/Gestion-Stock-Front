@@ -11,9 +11,9 @@ export class RayonService {
 
   constructor(private http :HttpClient) { }
 
-  getAllproduits():Observable<produit[]>{
-    return this.http.get<produit[]>("/api/Produit");
-  }
+  // getAllproduits():Observable<produit[]>{
+  //   return this.http.get<produit[]>("/api/Produit");
+  // }
 
   getAllrayons():Observable<rayon[]>{
     return this.http.get<rayon[]>("/api/Rayons");
