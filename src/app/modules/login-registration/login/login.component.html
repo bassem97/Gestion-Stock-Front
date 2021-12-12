@@ -1,4 +1,7 @@
-<div class="login-page bg-image" style="background-image: url('./assets/img/dashboard.png')">
+<div
+  class="login-page bg-image"
+  style="background-image: url('./assets/img/dashboard.png')"
+>
   <mat-card class="mat-elevation-z1">
     <mat-card-title style="text-align: center">SignUp</mat-card-title>
     <mat-tab-group class="example-stretched-tabs" mat-stretch-tabs>
@@ -123,7 +126,18 @@
                 id="password"
                 [(ngModel)]="loginModel.password"
                 formControlName="password"
+                />
+
+                <input
+                matInput
+                
+                required
+                [(ngModel)]="loginModel.resolved"
+                formControlName="resolved"
+                
+                hidden
               />
+
               <!--              <mat-error-->
               <!--                *ngIf="loginForm.get('password').hasError('required')">-->
               <!--                Password is required-->
@@ -131,12 +145,17 @@
               <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
             <mat-checkbox>Remember Me!</mat-checkbox>
+            <re-captcha
+              (resolved)="resolved($event)"
+              siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+            ></re-captcha>
             <button
               mat-raised-button
               color="primary"
               class="login-button"
               type="submit"
               (click)="submit()"
+              [disabled]="loginForm.invalid"
             >
               Log In
             </button>

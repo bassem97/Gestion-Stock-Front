@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginModel = {email: '', password: ''};
+    this.loginModel = {email: '', password: '', resolved: false};
     this.user = new User();
     this.createSignUpForm();
     this.creatSignInForm();
@@ -156,18 +156,17 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: [this.loginModel.email, [Validators.required]],
       password: [this.loginModel.password, [Validators.required]],
+      resolved : [this.loginModel.resolved , [Validators.requiredTrue]] ,
     });
   }
 
   onClickSignUp() {
-    console.log('aa');
-    this.authService.register(this.user).subscribe(
+ 
+    this.userService.add(this.user).subscribe(
       (data) => {
         this.router.navigate(['/login']);
-      },
-      (error) => {
-        console.log(error);
       }
+     
     );
   }
 
@@ -190,4 +189,14 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-}
+  public resolved(captchaResponse: string) { 
+    console.log(`Resolved captcha with response: ${captchaResponse}`); // Write your logic here about once human verified what action you want to perform 
+    this.loginModel.resolved = true;
+      
+
+    }
+  
+  }
+    
+    
+
