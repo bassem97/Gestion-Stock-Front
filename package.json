@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && ng serve -o"
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && ng serve -o",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
+
   },
   "engines": {
     "node": "6.11.1",

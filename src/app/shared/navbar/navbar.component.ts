@@ -35,13 +35,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.webSocketAPI._connect();
-    this.webSocketAPI.webSocketNotifier.subscribe(res => {
-      console.log("AAAAAAAAAA"+this.connectedUser);
-      console.log("AAAAAAAAAA2"+this.darkModeSwitcherService.getDarkMode());
-      this.darkModeSwitcherService.setDarkMode(this.connectedUser.darkMode);
-      // console.log(this.darkModeSwitcherService.getDarkMode());
-    });
+
 
 
 

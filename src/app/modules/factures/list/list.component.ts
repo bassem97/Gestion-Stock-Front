@@ -6,6 +6,7 @@ import {AddProductComponent} from "../../product/add-product/add-product.compone
 import {AddFactureComponent} from "../add-facture/add-facture.component";
 import {WebSocketAPIService} from "../../../core/services/webSocketAPI/web-socket-api.service";
 import {DeleteDialogComponent} from "../../../shared/dialogs/delete-dialog/delete-dialog.component";
+import {UserService} from "../../../core/services/user/user.service";
 
 @Component({
   selector: 'app-list',
