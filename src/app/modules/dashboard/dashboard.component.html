@@ -53,8 +53,47 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row d-flex justify-content-around">
+
+      <div class="col-5">
+        <mat-card>
+          <div class="text-center" style="color: #0a4067; font-size: large; ">
+            Products By Category
+          </div>
+          <mat-card-content>
+            <canvas baseChart
+                    [data]="categoryChartData"
+                    [labels]="categoriesChartLabels"
+                    [chartType]="doughnutChartType"
+                    [colors]="donutColors">
+            </canvas>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+      <div class="col-5">
+        <mat-card>
+          <div class="text-center" style="color: #0a4067; font-size: large; ">
+            Monthly Revenue
+          </div>
+          <mat-card-content>
+            <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    chartType="line"
+                    [plugins]="lineChartPlugins">
+            </canvas>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+
+      <!--<div class="col-md-4">
         <div class="card card-chart">
           <div class="card-header card-header-success">
             <div class="ct-chart" id="dailySalesChart"></div>
@@ -70,8 +109,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
+      </div>-->
+     <!-- <div class="col-md-4">
         <div class="card card-chart">
           <div class="card-header card-header-warning">
             <div class="ct-chart" id="websiteViewsChart"></div>
@@ -86,8 +125,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
+      </div>-->
+      <!--<div class="col-md-4">
         <div class="card card-chart">
           <div class="card-header card-header-danger">
             <div class="ct-chart" id="completedTasksChart"></div>
@@ -102,7 +141,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12">

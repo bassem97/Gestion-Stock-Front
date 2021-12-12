@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as Chartist from 'chartist';
+import {Color, Label, MultiDataSet} from 'ng2-charts';
+import {ChartDataSets, ChartType} from 'chart.js';
 import {ProduitService} from "../../core/services/produit/produit.service";
 import {WebSocketAPIService} from "../../core/services/webSocketAPI/web-socket-api.service";
 import {UserService} from "../../core/services/user/user.service";
@@ -16,19 +18,51 @@ export class DashboardComponent implements OnInit {
   usersNumber: number;
   reclamationsNumber: number;
 
+  // Products By Category Chart
+  categoryChartData: MultiDataSet = [];
+  categoriesChartLabels: Label[] = [];
+  doughnutChartType: ChartType = 'doughnut';
+  donutColors = [
+    {
+      backgroundColor: [
+        '#fd960e',
+        '#ed4e4a',
+        '#4aa64e'
+      ]
+    },
+  ];
+
+  // Monthly Revenue Chart
+
+  lineChartData: ChartDataSets[];
+
+  lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  lineChartOptions = {
+    responsive: true
+  };
+  lineChartColors: Color[] = [
+    {
+      borderColor: '#0a4067',
+      backgroundColor: '#0a4067',
+    },
+  ];
+  lineChartLegend = true;
+  lineChartPlugins = [];
+
   constructor(private produitService: ProduitService,
               private userService: UserService,
               private reclamationService: ReclamationService,
-              private webSocketAPI: WebSocketAPIService) { }
+              private webSocketAPI: WebSocketAPIService) {
+  }
 
-  startAnimationForLineChart(chart:any){
+  startAnimationForLineChart(chart: any) {
     let seq: any, delays: any, durations: any;
     seq = 0;
     delays = 80;
     durations = 500;
 
-    chart.on('draw', function(data:any) {
-      if(data.type === 'line' || data.type === 'area') {
+    chart.on('draw', function (data: any) {
+      if (data.type === 'line' || data.type === 'area') {
         data.element.animate({
           d: {
             begin: 600,
@@ -38,7 +72,7 @@ export class DashboardComponent implements OnInit {
             easing: Chartist.Svg.Easing.easeOutQuint
           }
         });
-      } else if(data.type === 'point') {
+      } else if (data.type === 'point') {
         seq++;
         data.element.animate({
           opacity: {
@@ -55,14 +89,14 @@ export class DashboardComponent implements OnInit {
     seq = 0;
   };
 
-  startAnimationForBarChart(chart:any){
+  startAnimationForBarChart(chart: any) {
     let seq2: any, delays2: any, durations2: any;
 
     seq2 = 0;
     delays2 = 80;
     durations2 = 500;
-    chart.on('draw', function(data:any) {
-      if(data.type === 'bar'){
+    chart.on('draw', function (data: any) {
+      if (data.type === 'bar') {
         seq2++;
         data.element.animate({
           opacity: {
@@ -79,7 +113,9 @@ export class DashboardComponent implements OnInit {
     seq2 = 0;
   };
 
-  getMonthlyRevenue() {this.produitService.getMonthlyRevenue().subscribe(value => this.revenue = value);}
+  getMonthlyRevenue() {
+    this.produitService.getMonthlyRevenue().subscribe(value => this.revenue = value);
+  }
 
   ngOnInit() {
     this.userService.list().subscribe(value => this.usersNumber = value.length);
@@ -91,6 +127,42 @@ export class DashboardComponent implements OnInit {
         this.getMonthlyRevenue();
       }, 500);
     });
+
+    // Chart Products By Category
+
+
+    this.categoriesChartLabels.push("ELECTROMENAGER");
+    this.categoriesChartLabels.push("ALIMENTAIRE");
+    this.categoriesChartLabels.push("QUINCAILLERIE");
+
+    this.produitService.findAll().subscribe(value => {
+      // @ts-ignore
+      this.categoryChartData.push(value.filter(value1 => value1.detailProduit.categorieProduit == "ELECTROMENAGER").length);
+      // @ts-ignore
+      this.categoryChartData.push(value.filter(value1 => value1.detailProduit.categorieProduit == "ALIMENTAIRE").length);
+      // @ts-ignore
+      this.categoryChartData.push(value.filter(value1 => value1.detailProduit.categorieProduit == "QUINCAILLERIE").length);
+    });
+
+    // Monthly Revenue Chart
+
+    let tab;
+    this.lineChartData = [
+      {data: [], label: 'Revenue By Month'},
+    ];
+    this.produitService.getRevenueByMonth().subscribe(value => {
+        tab = value;
+        /* setTimeout(() => {
+         }, 1000);*/
+      }
+      , error => {
+      }, () => {
+        this.lineChartData = [
+          {data: tab, label: 'Revenue By Month'},
+        ];
+      });
+
+
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
     const dataDailySalesChart: any = {
@@ -106,7 +178,7 @@ export class DashboardComponent implements OnInit {
       }),
       low: 0,
       high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+      chartPadding: {top: 0, right: 0, bottom: 0, left: 0},
     }
 
     var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
@@ -129,14 +201,13 @@ export class DashboardComponent implements OnInit {
       }),
       low: 0,
       high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
+      chartPadding: {top: 0, right: 0, bottom: 0, left: 0}
     }
 
     var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
 
     // start animation for the Completed Tasks Chart - Line Chart
     this.startAnimationForLineChart(completedTasksChart);
-
 
 
     /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
@@ -154,13 +225,13 @@ export class DashboardComponent implements OnInit {
       },
       low: 0,
       high: 1000,
-      chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
+      chartPadding: {top: 0, right: 5, bottom: 0, left: 0}
     };
     var responsiveOptions: any[] = [
       ['screen and (max-width: 640px)', {
         seriesBarDistance: 5,
         axisX: {
-          labelInterpolationFnc: function (value:any) {
+          labelInterpolationFnc: function (value: any) {
             return value[0];
           }
         }
