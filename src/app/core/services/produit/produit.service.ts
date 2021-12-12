@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Produit} from "../../models/produit";
 import {environment} from "../../../../environments/environment";
@@ -37,5 +37,9 @@ export class ProduitService {
 
   getMonthlyRevenue(): Observable<number> {
     return  this.http.get<number>(this.url + "revenue", {headers : environment.headers});
+  }
+
+  getRevenueByMonth(): Observable<number[]> {
+    return  this.http.get<number[]>(this.url + "revenueByMonth", {headers : environment.headers});
   }
 }

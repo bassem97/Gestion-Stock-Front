@@ -1,0 +1,32 @@
+<div class="main-content ">
+  <div class="container-fluid d-flex justify-content-center">
+
+          <div class="col-md-6">
+            <div class="pro-img-details">
+              <img src="./assets/img/{{product.image}}" alt="Image">
+            </div>
+          </div>
+          <div class="col-md-6" style="align-items: center; text-align: center; padding: 50px">
+            <h1 style="font-weight: bold">
+              <a href="">
+                {{product.libelle}}
+              </a>
+            </h1>
+            <p>
+              {{product.rayon.code}} : {{product.rayon.libelle}}
+            </p>
+            <div class="product_meta" >
+              <span class="posted_in"> <strong>Category: </strong> <a rel="tag" href="#">{{product.detailProduit.categorieProduit}}</a></span>
+            </div>
+            <div class="m-bot16" style="padding: 10px"> <strong>Price : </strong> <span class="pro-price"> {{product.prixUnitaire}} DT</span></div>
+            <div class="m-bot16" style="padding: 10px"> <strong>Quantity : </strong> <span class="pro-price"> {{product.stock.qte}}</span>
+                <mat-icon *ngIf="product.stock.qte==product.stock.qteMin">warning</mat-icon>
+            </div>
+
+            <p>
+              <button class="btn btn-round btn-danger" type="button" [disabled]="product.stock.qte==product.stock.qteMin"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+            </p>
+          </div>
+
+  </div>
+</div>
