@@ -63,7 +63,7 @@ export class AuthenticationService {
     // this.router.navigateByUrl('/login');
   }
 
-  register = (user: User) => {
-    return this.http.post(this.url + 'register', user);
-  };
+  // register = (user: User) => {
+  //   return this.http.post(this.url + 'register', user);
+  // };
 }

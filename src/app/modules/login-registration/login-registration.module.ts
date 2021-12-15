@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTabsModule} from "@angular/material/tabs";
+import { RecaptchaModule } from 'ng-recaptcha';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { FormsModule , ReactiveFormsModule  }   from '@angular/forms';
 
@@ -28,6 +30,8 @@ import { FormsModule , ReactiveFormsModule  }   from '@angular/forms';
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
+    RecaptchaModule,
+    NgxSpinnerModule
   ],
 })
 export class LoginRegistrationModule {}

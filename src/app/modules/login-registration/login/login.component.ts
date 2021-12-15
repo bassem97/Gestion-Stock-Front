@@ -13,7 +13,7 @@ import { Login } from '../../../core/models/login';
 import { AuthenticationService } from '../../../core/services/auth/authService';
 import { UserService } from '../../../core/services/user/user.service';
 import {ErrorDialogComponent} from "../../../shared/dialogs/error-dialog/error-dialog.component";
-
+import { NgxSpinnerService } from "ngx-spinner";
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
@@ -48,14 +48,21 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private authService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    this.loginModel = {email: '', password: ''};
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 2000);
+    this.loginModel = {email: '', password: '', resolved: false};
     this.user = new User();
     this.createSignUpForm();
     this.creatSignInForm();
+
   }
 
   createSignUpForm() {
@@ -156,18 +163,17 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: [this.loginModel.email, [Validators.required]],
       password: [this.loginModel.password, [Validators.required]],
+      resolved : [this.loginModel.resolved , [Validators.requiredTrue]] ,
     });
   }
 
   onClickSignUp() {
-    console.log('aa');
-    this.authService.register(this.user).subscribe(
+ 
+    this.userService.add(this.user).subscribe(
       (data) => {
         this.router.navigate(['/login']);
-      },
-      (error) => {
-        console.log(error);
       }
+     
     );
   }
 
@@ -190,4 +196,14 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-}
+  public resolved(captchaResponse: string) { 
+    console.log(`Resolved captcha with response: ${captchaResponse}`); // Write your logic here about once human verified what action you want to perform 
+    this.loginModel.resolved = true;
+      
+
+    }
+  
+  }
+    
+    
+

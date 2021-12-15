@@ -19,6 +19,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DateAdapter} from "@angular/material/core";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxSpinnerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

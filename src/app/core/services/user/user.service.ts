@@ -36,9 +36,10 @@ export class UserService {
     });
   }
 
-  add(user: User) {
-    return this.http.post(this.baseurl + 'add', user,{headers : environment.headers});
+ public  add(user: User) {
+    return this.http.post(this.baseurl + 'add', user);
   }
+
 
   update(user: User): Observable<User>{
     return this.http.put<User>(this.baseurl + "update/" + user.idUser, user,{headers : environment.headers});
