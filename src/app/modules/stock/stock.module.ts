@@ -8,7 +8,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {MatButtonModule} from "@angular/material/button";
+import {MatButtonModule} from "@angular/material/button";  
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {Ng2OrderModule} from "ng2-order-pipe";
 
