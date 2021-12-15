@@ -9,11 +9,11 @@ import {Rayon} from "../../models/rayon";
 })
 export class RayonService {
 
-  url = environment.url + "rayon/";
+  url = environment.url + "Rayons/";
 
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Rayon[]> {
-    return this.http.get<Rayon[]>(this.url + "list",{headers : environment.headers});
+    return this.http.get<Rayon[]>(this.url ,{headers : environment.headers});
   }
 }

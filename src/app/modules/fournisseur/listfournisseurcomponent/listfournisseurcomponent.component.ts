@@ -22,7 +22,7 @@ export class ListfournisseurcomponentComponent implements OnInit {
   constructor(private fournisseurService:FournisseurService) { }
 
   ngOnInit(): void {
-    this.fournisseurService.getAllfournisseurs().subscribe(get =>{
+    this.fournisseurService.findAll().subscribe(get =>{
       get.forEach(fournisseur =>{
         this.listfournisseurs.push(fournisseur);
       })

@@ -42,37 +42,10 @@ export class AddProductComponent implements OnInit {
               private stockService: StockService) {
   }
 
-  // Get fields value as form control
-  get code() {
-    return this.productForm.get('code') as FormControl;
-  }
-
-  get libelle() {
-    return this.productForm.get('libelle') as FormControl;
-  }
-
-  get prixUnitaire() {
-    return this.productForm.get('prixUnitaire') as FormControl;
-  }
-
-  get rayon() {
-    return this.productForm.get('rayon') as FormControl;
-  }
-
-  get stock() {
-    return this.productForm.get('stock') as FormControl;
-  }
-
-  get categorie() {
-    return this.productForm.get('categorie') as FormControl;
-  }
-
-  get fournisseurs() {
-    return this.productForm.get('fournisseurs') as FormControl;
-  }
-
   ngOnInit(): void {
+
     this.product = this.data[0] || new Produit();
+    console.log(this.product);
     this.stockService.findAll().subscribe(value => {
       this.stocks = value;
       if (this.data[0]) {
@@ -108,6 +81,40 @@ export class AddProductComponent implements OnInit {
       this.productForm.get('categorie')?.setValue(this.product.detailProduit.categorieProduit);
     }
   }
+
+
+
+
+  // Get fields value as form control
+  get code() {
+    return this.productForm.get('code') as FormControl;
+  }
+
+  get libelle() {
+    return this.productForm.get('libelle') as FormControl;
+  }
+
+  get prixUnitaire() {
+    return this.productForm.get('prixUnitaire') as FormControl;
+  }
+
+  get rayon() {
+    return this.productForm.get('rayon') as FormControl;
+  }
+
+  get stock() {
+    return this.productForm.get('stock') as FormControl;
+  }
+
+  get categorie() {
+    return this.productForm.get('categorie') as FormControl;
+  }
+
+  get fournisseurs() {
+    return this.productForm.get('fournisseurs') as FormControl;
+  }
+
+
 
   // Get form controls Errors
   getErrorCode() {

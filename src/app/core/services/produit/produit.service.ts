@@ -28,6 +28,7 @@ export class ProduitService {
   }
 
   delete(id: number) {
+    console.log('dkhalll');
     return this.http.delete(this.url + "delete/" + id,{headers : environment.headers});
   }
 

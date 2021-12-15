@@ -49,6 +49,7 @@ export class ListProductComponent implements OnInit {
   }
 
   delete(id: number) {
+
     this.produitService.delete(id).subscribe();
   }
 
