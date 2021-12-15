@@ -1,11 +1,17 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+      <input _ngcontent-xsh-c80="" type="text" name="idStock" [(ngModel)]="libelle"  placeholder="Search..." class="form-control">
+    </div>
+    <div class="row">
+      <button class="btn btn-danger" (click)="sort(libelle)"> Sort </button>
+    </div>
+    <div class="row">
       <button class="btn btn-warning" (click)="showForm()">Add new Stock</button>
     </div>
 
     <div class="row">
-      <div class="col-md-4" *ngFor="let stock of stocks" >
+      <div class="col-md-4" *ngFor="let stock of stocks | filter:libelle | orderBy: key: reverse" >
         <!--suppress BadExpressionStatementJS -->
         <app-stock [stock]="stock" (deleteEvent)="delete(stock.idStock)"></app-stock>
     </div>

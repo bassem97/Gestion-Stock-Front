@@ -12,8 +12,9 @@ import {StockService} from "../../../core/services/stock/stock.service";
 })
 export class ListStockComponent implements OnInit {
   @Input() stock: Stock;
-  stocks: Stock[];
+  stocks: Stock[] = [];
   showFormTemplate: boolean;
+  libelle: any;
   constructor(private stockService: StockService, public dialog: MatDialog) {}
 
 
@@ -49,4 +50,21 @@ export class ListStockComponent implements OnInit {
     })
   }
 
+  Search() {
+      if(this.libelle ==""){
+        this.ngOnInit();
+      }
+      else {
+        this.stocks = this.stocks.filter(res =>{
+          return res.libelleStock.toLocaleLowerCase().match(this.libelle.toLocaleLowerCase());
+        });
+      }
+  }
+  key: string = 'libelle';
+  reverse:boolean = true;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+
+  }
 }
